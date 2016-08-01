@@ -7,8 +7,8 @@ cryptocompare
 
 [npm-image]: https://img.shields.io/npm/v/cryptocompare.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/cryptocompare
-[travis-image]: https://img.shields.io/travis/exodusmovement/cryptocompare.svg?style=flat-square
-[travis-url]: https://travis-ci.org/exodusmovement/cryptocompare
+[travis-image]: https://img.shields.io/travis/ExodusMovement/cryptocompare.svg?style=flat-square
+[travis-url]: https://travis-ci.org/ExodusMovement/cryptocompare
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
