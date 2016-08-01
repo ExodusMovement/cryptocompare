@@ -7,8 +7,8 @@ cryptocompare
 
 [npm-image]: https://img.shields.io/npm/v/cryptocompare.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/cryptocompare
-[travis-image]: https://img.shields.io/travis/jprichardson/cryptocompare.svg?style=flat-square
-[travis-url]: https://travis-ci.org/jprichardson/cryptocompare
+[travis-image]: https://img.shields.io/travis/exodusmovement/cryptocompare.svg?style=flat-square
+[travis-url]: https://travis-ci.org/exodusmovement/cryptocompare
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
@@ -67,7 +67,11 @@ cc.coinList()
 Reference: https://www.cryptocompare.com/api/#-api-data-price-
 
 
- 
+### priceHistorical
+
+https://www.cryptocompare.com/api/#-api-data-pricehistorical-
+
+
 
 
 
