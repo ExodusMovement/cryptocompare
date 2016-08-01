@@ -17,6 +17,14 @@ function coinList () {
   return fetchJSON(url)
 }
 
+function price (fsym, tsyms, useBtc) {
+  if (!Array.isArray(tsyms)) tsyms = [tsyms]
+  var url = baseUrl + 'price?fsym=' + fsym + '&tsyms=' + tsyms.join(',')
+  if (useBtc) url += 'usebtc=true'
+  return fetchJSON(url)
+}
+
 module.exports = {
-  coinList
+  coinList,
+  price
 }

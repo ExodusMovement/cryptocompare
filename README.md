@@ -12,7 +12,7 @@ cryptocompare
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
-CryptoCompare JavaScript API
+[CryptoCompare](https://www.cryptocompare.com/) JavaScript API
 
 Install
 -------
@@ -33,6 +33,8 @@ Reference: https://www.cryptocompare.com/api/#-api-data-coinlist-
 - Parameters: (none)           
 - Returns:    A Promise function that returns contains an associative array of coins.
 
+**Example:**
+
 ```js
 var cc = require('cryptocompare')
 cc.coinList()
@@ -42,7 +44,7 @@ cc.coinList()
 .catch(console.error.bind(console)
 ```
 
-outputs:
+**Outputs:**
 
 ```
 { Id: '1182',
@@ -59,6 +61,14 @@ outputs:
   TotalCoinsFreeFloat: 'N/A',
   SortOrder: '1' }
 ```
+
+### price
+
+Reference: https://www.cryptocompare.com/api/#-api-data-price-
+
+
+ 
+
 
 
 ## License
