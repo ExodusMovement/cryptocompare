@@ -1,0 +1,32 @@
+{
+  "name": "cryptocompare",
+  "description": "CryptoCompare JavaScript API",
+  "version": "0.0.0",
+  "author": "JP Richardson <jprichardson@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/exodusmovement/cryptocompare/issues"
+  },
+  "devDependencies": {
+    "node-fetch": "^1.5.3",
+    "standard": "*",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.0"
+  },
+  "homepage": "https://github.com/exodusmovement/cryptocompare",
+  "keywords": [
+    "api",
+    "bitcoin",
+    "cryptocurrency",
+    "ethereum",
+    "price"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exodusmovement/cryptocompare.git"
+  },
+  "scripts": {
+    "test": "standard && tape test/*.js | tap-spec"
+  }
+}
