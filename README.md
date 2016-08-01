@@ -29,11 +29,11 @@ Usage
 
 Reference: https://www.cryptocompare.com/api/#-api-data-coinlist-
 
-| a     | b    |
+|       |      |
 |  ---: | :--- |
-| Signature  | `coinList()`     |
-| Parameters | (none)           |
-| Returns    | A Promise function.         |
+| Signature:  | `coinList()`     |
+| Parameters: | (none)           |
+| Returns:    | A Promise function.         |
 
 ```js
 var cryptocompare = require('cryptocompare')
