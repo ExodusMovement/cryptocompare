@@ -17,7 +17,7 @@ CryptoCompare JavaScript API
 Install
 -------
 
-    npm install cryptocompare
+    npm install --save cryptocompare
 
 
 Usage
@@ -29,14 +29,35 @@ Usage
 
 Reference: https://www.cryptocompare.com/api/#-api-data-coinlist-
 
-|       |      |
-|  ---: | :--- |
-| Signature:  | `coinList()`     |
-| Parameters: | (none)           |
-| Returns:    | A Promise function.         |
+- Signature: `coinList()`
+- Parameters: (none)           
+- Returns:    A Promise function that returns contains an associative array of coins.
 
 ```js
-var cryptocompare = require('cryptocompare')
+var cc = require('cryptocompare')
+cc.coinList()
+.then(coinList => {
+  console.dir(coinList.BTC)
+})
+.catch(console.error.bind(console)
+```
+
+outputs:
+
+```
+{ Id: '1182',
+  Url: '/coins/btc/overview',
+  ImageUrl: '/media/19633/btc.png',
+  Name: 'BTC',
+  CoinName: 'Bitcoin',
+  FullName: 'Bitcoin (BTC)',
+  Algorithm: 'SHA256',
+  ProofType: 'PoW',
+  FullyPremined: '0',
+  TotalCoinSupply: '21000000',
+  PreMinedValue: 'N/A',
+  TotalCoinsFreeFloat: 'N/A',
+  SortOrder: '1' }
 ```
 
 
