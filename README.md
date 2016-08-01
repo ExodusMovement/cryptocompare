@@ -29,6 +29,7 @@ Usage
 
 Reference: https://www.cryptocompare.com/api/#-api-data-coinlist-
 
+| a     | b    |
 |  ---: | :--- |
 | Signature  | `coinList()`     |
 | Parameters | (none)           |
