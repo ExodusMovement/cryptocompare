@@ -26,7 +26,7 @@ function price (fsym, tsyms, useBtc) {
 
 function priceHistorical (fsym, tsyms, time) {
   if (!Array.isArray(tsyms)) tsyms = [tsyms]
-  if (!time instanceof Date) throw new Error('time parameter must be an instance of Date.')
+  if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
   time = Math.floor(time.getTime() / 1000)
   var url = baseUrl + 'pricehistorical?fsym=' + fsym + '&tsyms=' + tsyms.join(',') + '&ts=' + time
   return fetchJSON(url)
