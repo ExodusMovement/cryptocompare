@@ -18,10 +18,11 @@ function price (fsym, tsyms, tryConversion) {
   return fetchJSON(url)
 }
 
-function priceHistorical (fsym, tsyms, time) {
+function priceHistorical (fsym, tsyms, time, tryConversion) {
   if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
   time = Math.floor(time.getTime() / 1000)
   let url = `${baseUrl}pricehistorical?fsym=${fsym}&tsyms=${tsyms}&ts=${time}`
+  if (tryConversion === false) url += '&tryConversion=false'
   // The API returns json with an extra layer of nesting, so remove it
   return fetchJSON(url).then(result => result[fsym])
 }

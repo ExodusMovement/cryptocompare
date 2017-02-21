@@ -23,10 +23,11 @@ test('price() allows passing a string as the second parameter', t => {
 })
 
 test("price()'s tryConversion=false works", t => {
+  t.plan(1)
   cc.price('LTD', 'USD', false).then(prices => {
     t.end('Promise should not resolve')
   }).catch(e => {
-    t.ok(e, 'Converting LTD to USD fails')
+    t.ok(e.match(/market does not exist/i), 'Converting LTD to USD fails')
     t.end()
   }).catch(t.end)
 })
@@ -39,6 +40,18 @@ test('priceHistorical()', t => {
     t.strictEqual(typeof prices.USD, 'number', 'prices.USD is a number')
     t.is(prices.USD, 997, 'Correct historical value')
     t.strictEqual(typeof prices.EUR, 'number', 'prices.EUR is a number')
+    t.end()
+  }).catch(t.end)
+})
+
+test("priceHistorical()'s tryConversion=false works", t => {
+  t.plan(1)
+  // NOTE: Historical values are hard-coded into this test
+  const timestamp = new Date('2017-01-01')
+  cc.priceHistorical('LTD', 'USD', timestamp, false).then(prices => {
+    t.end('Promise should not resolve')
+  }).catch(e => {
+    t.ok(e.match(/market does not exist/i), 'Converting LTD to USD fails')
     t.end()
   }).catch(t.end)
 })

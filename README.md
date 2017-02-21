@@ -27,7 +27,7 @@ Usage
 
 ### `price()`
 
-`price(fsym, tsyms, [tryConversion])`
+`price(fsym, tsyms[, tryConversion])`
 
 - `fsym` (String) From Symbol
 - `tsym` (Array of Strings | String) To Symbol(s)
@@ -55,11 +55,12 @@ cc.price('BTC', 'USD')
 
 ### priceHistorical
 
-`priceHistorical(fsym, tsyms, time)`
+`priceHistorical(fsym, tsyms, time[, tryConversion])`
 
 - `fsym` (String) From Symbol
 - `tsym` (Array of Strings | String) To Symbol(s)
 - `time` (Date) Date in history that you want price data for
+- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
 const cc = require('cryptocompare')
