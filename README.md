@@ -25,51 +25,53 @@ Usage
 
 ### Methods
 
-#### coinList
+### `price()`
 
-Reference: https://www.cryptocompare.com/api/#-api-data-coinlist-
+`price(fsym, tsyms, [tryConversion])`
 
-- Signature: `coinList()`
-- Parameters: (none)           
-- Returns:    A Promise function that returns contains an associative array of coins.
-
-**Example:**
+- `fsym` (String) From Symbol
+- `tsym` (Array of Strings | String) To Symbol(s)
+- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
-var cc = require('cryptocompare')
-cc.coinList()
-.then(coinList => {
-  console.dir(coinList.BTC)
+const cc = require('cryptocompare')
+
+// Basic Usage:
+cc.price('BTC', ['USD', 'EUR'])
+.then(prices => {
+  console.log(prices)
+  // -> { USD: 1100.24, EUR: 1039.63 }
 })
-.catch(console.error.bind(console)
+.catch(console.error)
+
+// Passing a single pair of currencies:
+cc.price('BTC', 'USD')
+.then(prices => {
+  console.log(prices)
+  // -> { USD: 1100.24 }
+})
+.catch(console.error)
 ```
-
-**Outputs:**
-
-```
-{ Id: '1182',
-  Url: '/coins/btc/overview',
-  ImageUrl: '/media/19633/btc.png',
-  Name: 'BTC',
-  CoinName: 'Bitcoin',
-  FullName: 'Bitcoin (BTC)',
-  Algorithm: 'SHA256',
-  ProofType: 'PoW',
-  FullyPremined: '0',
-  TotalCoinSupply: '21000000',
-  PreMinedValue: 'N/A',
-  TotalCoinsFreeFloat: 'N/A',
-  SortOrder: '1' }
-```
-
-### price
-
-Reference: https://www.cryptocompare.com/api/#-api-data-price-
-
 
 ### priceHistorical
 
-https://www.cryptocompare.com/api/#-api-data-pricehistorical-
+`priceHistorical(fsym, tsyms, time)`
+
+- `fsym` (String) From Symbol
+- `tsym` (Array of Strings | String) To Symbol(s)
+- `time` (Date) Date in history that you want price data for
+
+```js
+const cc = require('cryptocompare')
+
+// Basic Usage:
+cc.priceHistorical('BTC', ['USD', 'EUR'], new Date('2017-01-01'))
+.then(prices => {
+  console.log(prices)
+  // -> { BTC: { USD: 997, EUR: 948.17 } }
+})
+.catch(console.error)
+```
 
 
 

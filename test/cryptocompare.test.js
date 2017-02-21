@@ -5,34 +5,49 @@ const test = require('tape')
 global.fetch = require('node-fetch')
 const cc = require('../')
 
-test('coinList()', t => {
-  t.plan(1)
-  cc.coinList().then(coinList => {
-    t.strictEqual(coinList.BTC.CoinName, 'Bitcoin', 'CoinName field should be Bitcoin')
+test('price()', t => {
+  t.plan(2)
+  cc.price('BTC', ['USD', 'EUR']).then(prices => {
+    t.strictEqual(typeof prices.USD, 'number', 'prices.USD is a number')
+    t.strictEqual(typeof prices.EUR, 'number', 'prices.EUR is a number')
+    t.end()
   }).catch(t.end)
 })
 
-test('price()', t => {
-  t.plan(4)
-  cc.price('BTC', ['USD', 'CNY']).then(prices => {
-    t.strictEqual(prices[0].Symbol, 'USD', 'prices[0].Symbol === USD')
-    t.strictEqual(typeof prices[0].Price, 'number', 'prices[0].Price is a number')
-    t.strictEqual(prices[1].Symbol, 'CNY')
-    t.strictEqual(typeof prices[1].Price, 'number')
+test('price() allows passing a string as the second parameter', t => {
+  t.plan(1)
+  cc.price('BTC', 'USD').then(prices => {
+    t.strictEqual(typeof prices.USD, 'number', 'prices.USD is a number')
+    t.end()
+  }).catch(t.end)
+})
+
+test("price()'s tryConversion=false works", t => {
+  cc.price('LTD', 'USD', false).then(prices => {
+    t.end('Promise should not resolve')
+  }).catch(e => {
+    t.ok(e, 'Converting LTD to USD fails')
     t.end()
   }).catch(t.end)
 })
 
 test('priceHistorical()', t => {
-  t.plan(5)
-  // Arbitrary timestamp; historical values are hard-coded into this test
-  const timestamp = new Date(1456149600 * 1000)
-  cc.priceHistorical('BTC', ['USD', 'CNY'], timestamp).then(prices => {
-    t.strictEqual(prices[0].Symbol, 'USD', 'prices[0].Symbol === USD')
-    t.strictEqual(typeof prices[0].Price, 'number', 'prices[0].Price is a number')
-    t.is(prices[0].Price, 438.26)
-    t.strictEqual(prices[1].Symbol, 'CNY')
-    t.strictEqual(typeof prices[1].Price, 'number')
+  t.plan(3)
+  // NOTE: Historical values are hard-coded into this test
+  const timestamp = new Date('2017-01-01')
+  cc.priceHistorical('BTC', ['USD', 'EUR'], timestamp).then(prices => {
+    t.strictEqual(typeof prices.USD, 'number', 'prices.USD is a number')
+    t.is(prices.USD, 997, 'Correct historical value')
+    t.strictEqual(typeof prices.EUR, 'number', 'prices.EUR is a number')
+    t.end()
+  }).catch(t.end)
+})
+
+test('error handling', t => {
+  cc.price('BTC').then(prices => {
+    t.end('Promise should not resolve')
+  }).catch(e => {
+    t.ok(e, 'Errors')
     t.end()
   }).catch(t.end)
 })

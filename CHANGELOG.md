@@ -1,6 +1,12 @@
 Unreleased
 ----------
 
+Switched to https://min-api.cryptocompare.com/
+
+- removed: `coinList()`
+- changed: `price()` returns a different data structure
+- changed: `priceHistorical()` returns a different data structure
+
 0.0.2 / 2016-11-21
 ------------------
 - bug fix: `priceHistorical()` - wrong endpoint
