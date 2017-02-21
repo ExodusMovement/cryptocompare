@@ -24,12 +24,12 @@ test('price()', function (t) {
 
 test('priceHistorical()', function (t) {
   t.plan(5)
-  var oneYearAgo = new Date((Date.now() / 1000 - 31536000) * 1000)
-  cc.priceHistorical('BTC', ['USD', 'CNY'], oneYearAgo).then(prices => {
+  // Arbitrary timestamp; historical values are hard-coded into this test
+  var timestamp = new Date(1456149600 * 1000)
+  cc.priceHistorical('BTC', ['USD', 'CNY'], timestamp).then(prices => {
     t.strictEqual(prices[0].Symbol, 'USD', 'prices[0].Symbol === USD')
     t.strictEqual(typeof prices[0].Price, 'number', 'prices[0].Price is a number')
-    // t.is(prices[0].Price, 321.68)
-    t.is(prices[0].Price, 323.65)
+    t.is(prices[0].Price, 438.26)
     t.strictEqual(prices[1].Symbol, 'CNY')
     t.strictEqual(typeof prices[1].Price, 'number')
     t.end()
