@@ -1,6 +1,7 @@
+'use strict'
 /* global fetch */
 
-var baseUrl = 'https://www.cryptocompare.com/api/data/'
+const baseUrl = 'https://www.cryptocompare.com/api/data/'
 
 function fetchJSON (url) {
   return fetch(url)
@@ -13,22 +14,20 @@ function fetchJSON (url) {
 }
 
 function coinList () {
-  var url = baseUrl + 'coinlist/'
+  let url = `${baseUrl}coinlist/`
   return fetchJSON(url)
 }
 
 function price (fsym, tsyms, useBtc) {
-  if (!Array.isArray(tsyms)) tsyms = [tsyms]
-  var url = baseUrl + 'price?fsym=' + fsym + '&tsyms=' + tsyms.join(',')
+  let url = `${baseUrl}price?fsym=${fsym}&tsyms=${tsyms}`
   if (useBtc) url += 'usebtc=true'
   return fetchJSON(url)
 }
 
 function priceHistorical (fsym, tsyms, time) {
-  if (!Array.isArray(tsyms)) tsyms = [tsyms]
   if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
   time = Math.floor(time.getTime() / 1000)
-  var url = baseUrl + 'pricehistorical?fsym=' + fsym + '&tsyms=' + tsyms.join(',') + '&ts=' + time
+  let url = `${baseUrl}pricehistorical?fsym=${fsym}&tsyms=${tsyms}&ts=${time}`
   return fetchJSON(url)
 }
 

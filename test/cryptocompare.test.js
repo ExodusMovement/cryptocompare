@@ -1,17 +1,18 @@
-var test = require('tape')
+'use strict'
+const test = require('tape')
 
 // set to global
 global.fetch = require('node-fetch')
-var cc = require('../')
+const cc = require('../')
 
-test('coinList()', function (t) {
+test('coinList()', t => {
   t.plan(1)
   cc.coinList().then(coinList => {
     t.strictEqual(coinList.BTC.CoinName, 'Bitcoin', 'CoinName field should be Bitcoin')
   }).catch(t.end)
 })
 
-test('price()', function (t) {
+test('price()', t => {
   t.plan(4)
   cc.price('BTC', ['USD', 'CNY']).then(prices => {
     t.strictEqual(prices[0].Symbol, 'USD', 'prices[0].Symbol === USD')
@@ -22,10 +23,10 @@ test('price()', function (t) {
   }).catch(t.end)
 })
 
-test('priceHistorical()', function (t) {
+test('priceHistorical()', t => {
   t.plan(5)
   // Arbitrary timestamp; historical values are hard-coded into this test
-  var timestamp = new Date(1456149600 * 1000)
+  const timestamp = new Date(1456149600 * 1000)
   cc.priceHistorical('BTC', ['USD', 'CNY'], timestamp).then(prices => {
     t.strictEqual(prices[0].Symbol, 'USD', 'prices[0].Symbol === USD')
     t.strictEqual(typeof prices[0].Price, 'number', 'prices[0].Price is a number')
