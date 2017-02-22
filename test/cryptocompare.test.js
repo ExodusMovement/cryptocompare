@@ -32,6 +32,25 @@ test("price()'s tryConversion=false works", t => {
   }).catch(t.end)
 })
 
+test('priceMulti()', t => {
+  t.plan(4)
+  cc.priceMulti(['BTC', 'ETH'], ['USD', 'EUR']).then(prices => {
+    t.strictEqual(typeof prices.BTC.USD, 'number', 'prices.BTC.USD is a number')
+    t.strictEqual(typeof prices.BTC.EUR, 'number', 'prices.BTC.EUR is a number')
+    t.strictEqual(typeof prices.ETH.USD, 'number', 'prices.ETH.USD is a number')
+    t.strictEqual(typeof prices.ETH.EUR, 'number', 'prices.ETH.EUR is a number')
+    t.end()
+  }).catch(t.end)
+})
+
+test('priceMulti() allows passing strings instead of arrays', t => {
+  t.plan(1)
+  cc.priceMulti('BTC', 'USD').then(prices => {
+    t.strictEqual(typeof prices.BTC.USD, 'number', 'prices.BTC.USD is a number')
+    t.end()
+  }).catch(t.end)
+})
+
 test('priceHistorical()', t => {
   t.plan(3)
   // NOTE: Historical values are hard-coded into this test

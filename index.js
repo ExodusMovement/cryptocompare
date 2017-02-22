@@ -18,6 +18,12 @@ function price (fsym, tsyms, tryConversion) {
   return fetchJSON(url)
 }
 
+function priceMulti (fsyms, tsyms, tryConversion) {
+  let url = `${baseUrl}pricemulti?fsyms=${fsyms}&tsyms=${tsyms}`
+  if (tryConversion === false) url += '&tryConversion=false'
+  return fetchJSON(url)
+}
+
 function priceHistorical (fsym, tsyms, time, tryConversion) {
   if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
   time = Math.floor(time.getTime() / 1000)
@@ -29,5 +35,6 @@ function priceHistorical (fsym, tsyms, time, tryConversion) {
 
 module.exports = {
   price,
+  priceMulti,
   priceHistorical
 }

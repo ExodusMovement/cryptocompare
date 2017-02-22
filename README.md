@@ -53,6 +53,37 @@ cc.price('BTC', 'USD')
 .catch(console.error)
 ```
 
+### `priceMulti()`
+
+Works like `price()`, except it allows you to specify a matrix of From Symbols.
+
+`priceMulti(fsym, tsyms[, tryConversion])`
+
+- `fsyms` (Array of Strings | String) From Symbol(s)
+- `tsyms` (Array of Strings | String) To Symbol(s)
+- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+
+```js
+const cc = require('cryptocompare')
+
+// Basic Usage:
+cc.priceMulti(['BTC', 'ETH'], ['USD', 'EUR'])
+.then(prices => {
+  console.log(prices)
+  // -> { BTC: { USD: 1114.63, EUR: 1055.82 },
+  //      ETH: { USD: 12.74, EUR: 12.06 } }
+})
+.catch(console.error)
+
+// Passing a single pair of currencies:
+cc.priceMulti('BTC', 'USD')
+.then(prices => {
+  console.log(prices)
+  // -> { BTC: { USD: 1114.63 } }
+})
+.catch(console.error)
+```
+
 ### priceHistorical
 
 `priceHistorical(fsym, tsyms, time[, tryConversion])`
