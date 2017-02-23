@@ -5,6 +5,12 @@ const test = require('tape')
 global.fetch = require('node-fetch')
 const cc = require('../')
 
+// NOT_USD_TRADABLE is a cryptocurrency which does not trade directly with USD.
+// This value is used in testing tryConversion. Currently, this is set to LTD.
+// If LTD trades directly with USD in the future, tests will fail.
+// In that case, change this value:
+const NOT_USD_TRADABLE = 'LTD'
+
 test('price()', t => {
   t.plan(2)
   cc.price('BTC', ['USD', 'EUR']).then(prices => {
@@ -23,13 +29,7 @@ test('price() allows passing a string as the second parameter', t => {
 })
 
 test("price()'s tryConversion=false works", t => {
-  t.plan(1)
-  cc.price('LTD', 'USD', false).then(prices => {
-    t.end('Promise should not resolve')
-  }).catch(e => {
-    t.ok(e.match(/market does not exist/i), 'Converting LTD to USD fails')
-    t.end()
-  }).catch(t.end)
+  testTryConversion(cc.price(NOT_USD_TRADABLE, 'USD', false), t)
 })
 
 test('priceMulti()', t => {
@@ -49,6 +49,10 @@ test('priceMulti() allows passing strings instead of arrays', t => {
     t.strictEqual(typeof prices.BTC.USD, 'number', 'prices.BTC.USD is a number')
     t.end()
   }).catch(t.end)
+})
+
+test("priceMulti()'s tryConversion=false works", t => {
+  testTryConversion(cc.priceMulti(NOT_USD_TRADABLE, 'USD', false), t)
 })
 
 test('priceFull()', t => {
@@ -81,6 +85,10 @@ test('priceFull() allows passing strings instead of arrays', t => {
   }).catch(t.end)
 })
 
+test("priceFull()'s tryConversion=false works", t => {
+  testTryConversion(cc.priceFull(NOT_USD_TRADABLE, 'USD', false), t)
+})
+
 test('priceHistorical()', t => {
   t.plan(3)
   // NOTE: Historical values are hard-coded into this test
@@ -94,15 +102,8 @@ test('priceHistorical()', t => {
 })
 
 test("priceHistorical()'s tryConversion=false works", t => {
-  t.plan(1)
-  // NOTE: Historical values are hard-coded into this test
   const timestamp = new Date('2017-01-01')
-  cc.priceHistorical('LTD', 'USD', timestamp, false).then(prices => {
-    t.end('Promise should not resolve')
-  }).catch(e => {
-    t.ok(e.match(/market does not exist/i), 'Converting LTD to USD fails')
-    t.end()
-  }).catch(t.end)
+  testTryConversion(cc.priceHistorical(NOT_USD_TRADABLE, 'USD', timestamp, false), t)
 })
 
 test('error handling', t => {
@@ -113,3 +114,15 @@ test('error handling', t => {
     t.end()
   }).catch(t.end)
 })
+
+// Helper Functions:
+
+function testTryConversion (promise, t) {
+  t.plan(1)
+  promise.then(prices => {
+    t.end('Promise should not resolve')
+  }).catch(e => {
+    t.ok(e.match(/market does not exist/i), `Converting ${NOT_USD_TRADABLE} to USD fails`)
+    t.end()
+  }).catch(t.end)
+}
