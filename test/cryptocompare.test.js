@@ -51,6 +51,36 @@ test('priceMulti() allows passing strings instead of arrays', t => {
   }).catch(t.end)
 })
 
+test('priceFull()', t => {
+  t.plan(5 * 2 * 2)
+  cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR']).then(prices => {
+    for (let fsym in prices) {
+      for (let tsym in prices[fsym]) {
+        t.is(typeof prices[fsym][tsym].PRICE, 'number', `prices.${fsym}.${tsym}.PRICE is a number`)
+        t.is(typeof prices[fsym][tsym].SUPPLY, 'number', `prices.${fsym}.${tsym}.SUPPLY is a number`)
+        t.is(typeof prices[fsym][tsym].MKTCAP, 'number', `prices.${fsym}.${tsym}.MKTCAP is a number`)
+
+        t.is(typeof prices[fsym][tsym].MARKET, 'string', `prices.${fsym}.${tsym}.MARKET is a string`)
+        t.is(typeof prices[fsym][tsym].LASTMARKET, 'string', `prices.${fsym}.${tsym}.LASTMARKET is a string`)
+      }
+    }
+    t.end()
+  }).catch(t.end)
+})
+
+test('priceFull() allows passing strings instead of arrays', t => {
+  t.plan(5)
+  cc.priceFull('BTC', 'USD').then(prices => {
+    t.is(typeof prices.BTC.USD.PRICE, 'number', `prices.BTC.USD.PRICE is a number`)
+    t.is(typeof prices.BTC.USD.SUPPLY, 'number', `prices.BTC.USD.SUPPLY is a number`)
+    t.is(typeof prices.BTC.USD.MKTCAP, 'number', `prices.BTC.USD.MKTCAP is a number`)
+
+    t.is(typeof prices.BTC.USD.MARKET, 'string', `prices.BTC.USD.MARKET is a string`)
+    t.is(typeof prices.BTC.USD.LASTMARKET, 'string', `prices.BTC.USD.LASTMARKET is a string`)
+    t.end()
+  }).catch(t.end)
+})
+
 test('priceHistorical()', t => {
   t.plan(3)
   // NOTE: Historical values are hard-coded into this test

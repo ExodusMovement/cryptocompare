@@ -84,6 +84,54 @@ cc.priceMulti('BTC', 'USD')
 .catch(console.error)
 ```
 
+### `priceFull()`
+
+Get all the current trading info (price, vol, open, high, low etc) of any list of cryptocurrencies in any other currency.
+
+`priceFull(fsym, tsyms[, tryConversion])`
+
+- `fsyms` (Array of Strings | String) From Symbol(s)
+- `tsyms` (Array of Strings | String) To Symbol(s)
+- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+
+```js
+const cc = require('cryptocompare')
+
+cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR'])
+.then(prices => {
+  console.log(prices)
+  // {
+  //   BTC: {
+  //     USD: {
+  //       TYPE: '5',
+  //       MARKET: 'CCCAGG',
+  //       FROMSYMBOL: 'BTC',
+  //       TOSYMBOL: 'USD',
+  //       FLAGS: '4',
+  //       PRICE: 1152.42,
+  //       LASTUPDATE: 1487865689,
+  //       LASTVOLUME: 0.21,
+  //       LASTVOLUMETO: 242.20349999999996,
+  //       LASTTRADEID: 1224703,
+  //       VOLUME24HOUR: 53435.45299122338,
+  //       VOLUME24HOURTO: 60671593.843186244,
+  //       OPEN24HOUR: 1119.31,
+  //       HIGH24HOUR: 1170,
+  //       LOW24HOUR: 1086.641,
+  //       LASTMARKET: 'itBit',
+  //       CHANGE24HOUR: 33.11000000000013,
+  //       CHANGEPCT24HOUR: 2.958072383879366,
+  //       SUPPLY: 16177825,
+  //       MKTCAP: 18643649086.5
+  //     },
+  //     EUR: ...
+  //   },
+  //   ETH: ...
+  // }
+})
+.catch(console.error)
+```
+
 ### priceHistorical
 
 `priceHistorical(fsym, tsyms, time[, tryConversion])`

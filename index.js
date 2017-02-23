@@ -24,6 +24,13 @@ function priceMulti (fsyms, tsyms, tryConversion) {
   return fetchJSON(url)
 }
 
+function priceFull (fsyms, tsyms, tryConversion) {
+  let url = `${baseUrl}pricemultifull?fsyms=${fsyms}&tsyms=${tsyms}`
+  if (tryConversion === false) url += '&tryConversion=false'
+  // We want the RAW data, not the DISPLAY data:
+  return fetchJSON(url).then(result => result.RAW)
+}
+
 function priceHistorical (fsym, tsyms, time, tryConversion) {
   if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
   time = Math.floor(time.getTime() / 1000)
@@ -36,5 +43,6 @@ function priceHistorical (fsym, tsyms, time, tryConversion) {
 module.exports = {
   price,
   priceMulti,
+  priceFull,
   priceHistorical
 }
