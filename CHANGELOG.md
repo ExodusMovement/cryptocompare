@@ -8,6 +8,7 @@ Switched to https://min-api.cryptocompare.com/
 - changed: `priceHistorical()` returns a different data structure
 - added: `priceMulti()`
 - added: `priceFull()`
+- added: `topPairs()`
 
 0.0.2 / 2016-11-21
 ------------------

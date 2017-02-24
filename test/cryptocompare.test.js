@@ -106,6 +106,27 @@ test("priceHistorical()'s tryConversion=false works", t => {
   testTryConversion(cc.priceHistorical(NOT_USD_TRADABLE, 'USD', timestamp, false), t)
 })
 
+test('topPairs()', t => {
+  t.plan(3 * 5 + 1)
+  cc.topPairs('BTC').then(pairs => {
+    t.equal(pairs.length, 5, 'returns 5 pairs by default')
+    pairs.forEach(pair => {
+      t.is(typeof pair.toSymbol, 'string', 'pair.toSymbol is a string')
+      t.is(typeof pair.volume24h, 'number', 'pair.volume24hr is a number')
+      t.is(typeof pair.volume24hTo, 'number', 'pair.volume24hrTo is a number')
+    })
+    t.end()
+  }).catch(t.end)
+})
+
+test("topPairs()'s limit option works", t => {
+  t.plan(1)
+  cc.topPairs('BTC', 3).then(pairs => {
+    t.equal(pairs.length, 3, 'limit works')
+    t.end()
+  }).catch(t.end)
+})
+
 test('error handling', t => {
   cc.price('BTC').then(prices => {
     t.end('Promise should not resolve')

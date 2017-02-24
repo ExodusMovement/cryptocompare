@@ -153,9 +153,34 @@ cc.priceHistorical('BTC', ['USD', 'EUR'], new Date('2017-01-01'))
 .catch(console.error)
 ```
 
+### `topPairs()`
 
+Get top pairs by volume for a currency.
 
+`topPairs(fsym[, limit])`
 
+- `fsym` (String) From Symbol
+- `limit` (Number) Limit the number of pairs you receive (default 5).
+
+```js
+const cc = require('cryptocompare')
+
+cc.topPairs('BTC', 2)
+.then(pairs => {
+  console.log(pairs)
+  // -> [ { exchange: 'CCCAGG',
+  //        fromSymbol: 'BTC',
+  //        toSymbol: 'JPY',
+  //        volume24h: 235602.43493487104,
+  //        volume24hTo: 31888554862.766888 },
+  //      { exchange: 'CCCAGG',
+  //        fromSymbol: 'BTC',
+  //        toSymbol: 'USD',
+  //        volume24h: 124504.4477389583,
+  //        volume24hTo: 145514032.93780443 } ]
+})
+.catch(console.error)
+```
 
 ## License
 

@@ -40,9 +40,16 @@ function priceHistorical (fsym, tsyms, time, tryConversion) {
   return fetchJSON(url).then(result => result[fsym])
 }
 
+function topPairs (fsym, limit) {
+  let url = `${baseUrl}top/pairs?fsym=${fsym}`
+  if (limit) url += `&limit=${limit}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 module.exports = {
   price,
   priceMulti,
   priceFull,
-  priceHistorical
+  priceHistorical,
+  topPairs
 }
