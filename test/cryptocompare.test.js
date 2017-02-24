@@ -127,6 +127,32 @@ test("topPairs()'s limit option works", t => {
   }).catch(t.end)
 })
 
+test('topExchanges()', t => {
+  t.plan(6 * 5 + 1)
+  cc.topExchanges('BTC', 'USD').then(exchanges => {
+    let prev
+    t.equal(exchanges.length, 5, 'returns 5 pairs by default')
+    exchanges.forEach(item => {
+      t.is(typeof item.exchange, 'string', 'item.exchange is a string')
+      t.notEqual(item.exchange, prev, 'item.exchange is unique')
+      prev = item.exchange
+      t.is(typeof item.fromSymbol, 'string', 'item.fromSymbol is a string')
+      t.is(typeof item.toSymbol, 'string', 'item.toSymbol is a string')
+      t.is(typeof item.volume24h, 'number', 'item.volume24hr is a number')
+      t.is(typeof item.volume24hTo, 'number', 'item.volume24hrTo is a number')
+    })
+    t.end()
+  }).catch(t.end)
+})
+
+test("topExchanges()'s limit option works", t => {
+  t.plan(1)
+  cc.topExchanges('BTC', 'USD', 3).then(exchanges => {
+    t.equal(exchanges.length, 3, 'limit works')
+    t.end()
+  }).catch(t.end)
+})
+
 test('error handling', t => {
   cc.price('BTC').then(prices => {
     t.end('Promise should not resolve')

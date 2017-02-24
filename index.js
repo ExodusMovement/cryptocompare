@@ -46,10 +46,17 @@ function topPairs (fsym, limit) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function topExchanges (fsym, tsym, limit) {
+  let url = `${baseUrl}top/exchanges?fsym=${fsym}&tsym=${tsym}`
+  if (limit) url += `&limit=${limit}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 module.exports = {
   price,
   priceMulti,
   priceFull,
   priceHistorical,
-  topPairs
+  topPairs,
+  topExchanges
 }

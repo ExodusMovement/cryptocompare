@@ -9,6 +9,7 @@ Switched to https://min-api.cryptocompare.com/
 - added: `priceMulti()`
 - added: `priceFull()`
 - added: `topPairs()`
+- added: `topExchanges()`
 
 0.0.2 / 2016-11-21
 ------------------

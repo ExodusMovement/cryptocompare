@@ -197,6 +197,36 @@ cc.topPairs('BTC', 2)
 .catch(console.error)
 ```
 
+### `topExchanges()`
+
+Get top exchanges by volume for a currency pair.
+
+`topExchanges(fsym, tsym[, limit])`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+- `limit` (Number) Limit the number of exchanges you receive (default 5).
+
+```js
+const cc = require('cryptocompare')
+
+cc.topExchanges('BTC', 'USD', 2)
+.then(exchanges => {
+  console.log(exchanges)
+  // -> [ { exchange: 'Bitfinex',
+  //        fromSymbol: 'BTC',
+  //        toSymbol: 'USD',
+  //        volume24h: 35239.36701090003,
+  //        volume24hTo: 41472258.85534388 },
+  //      { exchange: 'Bitstamp',
+  //        fromSymbol: 'BTC',
+  //        toSymbol: 'USD',
+  //        volume24h: 19658.748675010014,
+  //        volume24hTo: 23047071.74260772 } ]
+})
+.catch(console.error)
+```
+
 ## License
 
 [MIT](LICENSE.md)
