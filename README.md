@@ -23,14 +23,27 @@ Install
 Usage
 -----
 
+**Note:** cryptocompare depends on [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) being defined globally.
+
+- If you are using this in electron, it should work without any configuration.
+- If you are using this in Node.js, you will need to use [`node-fetch`](https://www.npmjs.com/package/node-fetch).
+
+  **Example:**
+  ```js
+  global.fetch = require('node-fetch')
+  const cc = require('cryptocompare')
+  ```
+
 ### Methods
 
 ### `price()`
 
+Get the current price of any cryptocurrency in any other currency.
+
 `price(fsym, tsyms[, tryConversion])`
 
 - `fsym` (String) From Symbol
-- `tsym` (Array of Strings | String) To Symbol(s)
+- `tsyms` (Array of Strings | String) To Symbol(s)
 - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
@@ -57,7 +70,7 @@ cc.price('BTC', 'USD')
 
 Works like `price()`, except it allows you to specify a matrix of From Symbols.
 
-`priceMulti(fsym, tsyms[, tryConversion])`
+`priceMulti(fsyms, tsyms[, tryConversion])`
 
 - `fsyms` (Array of Strings | String) From Symbol(s)
 - `tsyms` (Array of Strings | String) To Symbol(s)
@@ -86,9 +99,9 @@ cc.priceMulti('BTC', 'USD')
 
 ### `priceFull()`
 
-Get all the current trading info (price, vol, open, high, low etc) of any list of cryptocurrencies in any other currency.
+Get all the current trading info (price, vol, open, high, low, etc.) of any list of cryptocurrencies in any other currency.
 
-`priceFull(fsym, tsyms[, tryConversion])`
+`priceFull(fsyms, tsyms[, tryConversion])`
 
 - `fsyms` (Array of Strings | String) From Symbol(s)
 - `tsyms` (Array of Strings | String) To Symbol(s)
@@ -132,12 +145,14 @@ cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR'])
 .catch(console.error)
 ```
 
-### priceHistorical
+### `priceHistorical()`
+
+Get the price of any cryptocurrency in any other currency at a given timestamp. The price comes from the daily info - so it would be the price at the end of the day GMT based on the requested timestamp.
 
 `priceHistorical(fsym, tsyms, time[, tryConversion])`
 
 - `fsym` (String) From Symbol
-- `tsym` (Array of Strings | String) To Symbol(s)
+- `tsyms` (Array of Strings | String) To Symbol(s)
 - `time` (Date) Date in history that you want price data for
 - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
