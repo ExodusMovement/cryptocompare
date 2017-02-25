@@ -39,6 +39,12 @@ function priceHistorical (fsym, tsyms, time, tryConversion) {
   return fetchJSON(url).then(result => result[fsym])
 }
 
+function generateAvg (fsym, tsym, markets, tryConversion) {
+  let url = `${baseUrl}generateAvg?fsym=${fsym}&tsym=${tsym}&markets=${markets}`
+  if (tryConversion === false) url += '&tryConversion=false'
+  return fetchJSON(url).then(result => result.RAW)
+}
+
 function topPairs (fsym, limit) {
   let url = `${baseUrl}top/pairs?fsym=${fsym}`
   if (limit) url += `&limit=${limit}`
@@ -95,6 +101,7 @@ module.exports = {
   priceMulti,
   priceFull,
   priceHistorical,
+  generateAvg,
   topPairs,
   topExchanges,
   histoDay,

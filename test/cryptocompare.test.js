@@ -100,6 +100,26 @@ test("priceHistorical()'s tryConversion=false works", t => {
   helpers.testTryConversion(cc.priceHistorical(helpers.NOT_USD_TRADABLE, 'USD', timestamp, false), t)
 })
 
+test('generateAvg()', t => {
+  t.plan(6)
+  cc.generateAvg('BTC', 'USD', ['Coinbase', 'Kraken', 'Bitstamp', 'Bitfinex']).then(data => {
+    t.is(typeof data.PRICE, 'number', `data.PRICE is a number`)
+    t.is(typeof data.VOLUME24HOUR, 'number', `data.VOLUME24HOUR is a number`)
+    t.is(typeof data.VOLUME24HOURTO, 'number', `data.VOLUME24HOURTo is a number`)
+    t.is(typeof data.OPEN24HOUR, 'number', `data.OPEN24HOUR is a number`)
+    t.is(typeof data.HIGH24HOUR, 'number', `data.OPEN24HOUR is a number`)
+    t.is(typeof data.LOW24HOUR, 'number', `data.OPEN24HOUR is a number`)
+    t.end()
+  }).catch(t.end)
+})
+
+test("generateAvg()'s tryConversion=false works", t => {
+  helpers.testTryConversion(
+    cc.generateAvg(helpers.NOT_USD_TRADABLE, 'USD', ['Coinbase', 'Kraken'], false),
+    t
+  )
+})
+
 test('topPairs()', t => {
   t.plan(3 * 5 + 1)
   cc.topPairs('BTC').then(pairs => {

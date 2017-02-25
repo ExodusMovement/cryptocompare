@@ -168,6 +168,45 @@ cc.priceHistorical('BTC', ['USD', 'EUR'], new Date('2017-01-01'))
 .catch(console.error)
 ```
 
+### `generateAvg()`
+
+Compute the current trading info (price, vol, open, high, low etc) of the requested pair as a volume weighted average based on the markets requested.
+
+`generateAvg(fsym, tsym, markets[, tryConversion])`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+- `markets` (Array) Array of markets to base the average on. (You can get a list of top exchanges for a given pair with `topExchanges()`.)
+- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+
+```js
+const cc = require('cryptocompare')
+
+// Basic Usage:
+cc.generateAvg('BTC', 'USD', ['Coinbase', 'Kraken', 'Bitstamp', 'Bitfinex'])
+.then(data => {
+  console.log(data)
+  // -> { MARKET: 'CUSTOMAGG',
+  //      FROMSYMBOL: 'BTC',
+  //      TOSYMBOL: 'USD',
+  //      FLAGS: '2',
+  //      PRICE: 1155.61,
+  //      LASTUPDATE: 1488059738,
+  //      LASTVOLUME: 0.25546663,
+  //      LASTVOLUMETO: 294.93622433499996,
+  //      LASTTRADEID: 26533969,
+  //      VOLUME24HOUR: 27318.892083369985,
+  //      VOLUME24HOURTO: 31652183.38370657,
+  //      OPEN24HOUR: 1177.16,
+  //      HIGH24HOUR: 1189.9,
+  //      LOW24HOUR: 1110,
+  //      LASTMARKET: 'Bitfinex',
+  //      CHANGE24HOUR: -21.550000000000182,
+  //      CHANGEPCT24HOUR: -1.830677223147251 }
+})
+.catch(console.error)
+```
+
 ### `topPairs()`
 
 Get top pairs by volume for a currency.
