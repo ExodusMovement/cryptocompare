@@ -32,8 +32,7 @@ function priceFull (fsyms, tsyms, tryConversion) {
 }
 
 function priceHistorical (fsym, tsyms, time, tryConversion) {
-  if (!(time instanceof Date)) throw new Error('time parameter must be an instance of Date.')
-  time = Math.floor(time.getTime() / 1000)
+  time = dateToTimestamp(time)
   let url = `${baseUrl}pricehistorical?fsym=${fsym}&tsyms=${tsyms}&ts=${time}`
   if (tryConversion === false) url += '&tryConversion=false'
   // The API returns json with an extra layer of nesting, so remove it
@@ -54,10 +53,7 @@ function topExchanges (fsym, tsym, limit) {
 
 function histoDay (fsym, tsym, options) {
   options = options || {}
-  if (options.timestamp) {
-    if (!(options.timestamp instanceof Date)) throw new Error('options.timestamp must be an instance of Date.')
-    options.timestamp = Math.floor(options.timestamp.getTime() / 1000)
-  }
+  if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
   let url = `${baseUrl}histoday?fsym=${fsym}&tsym=${tsym}`
   if (options.limit === 'none') url += '&allData=true'
   else if (options.limit) url += `&limit=${options.limit}`
@@ -69,16 +65,18 @@ function histoDay (fsym, tsym, options) {
 
 function histoHour (fsym, tsym, options) {
   options = options || {}
-  if (options.timestamp) {
-    if (!(options.timestamp instanceof Date)) throw new Error('options.timestamp must be an instance of Date.')
-    options.timestamp = Math.floor(options.timestamp.getTime() / 1000)
-  }
+  if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
   let url = `${baseUrl}histohour?fsym=${fsym}&tsym=${tsym}`
   if (options.limit) url += `&limit=${options.limit}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   if (options.aggregate) url += `&aggregate=${options.aggregate}`
   if (options.timestamp) url += `&toTs=${options.timestamp}`
   return fetchJSON(url).then(result => result.Data)
+}
+
+function dateToTimestamp (date) {
+  if (!(date instanceof Date)) throw new Error('timestamp must be an instance of Date.')
+  return Math.floor(date.getTime() / 1000)
 }
 
 module.exports = {
