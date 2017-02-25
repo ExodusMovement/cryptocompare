@@ -6,6 +6,7 @@ Switched to https://min-api.cryptocompare.com/
 - removed: `coinList()`
 - changed: `price()` returns a different data structure
 - changed: `priceHistorical()` returns a different data structure
+- changed: `price()` and `priceHistorical)()` function signature has changed
 - added: `priceMulti()`
 - added: `priceFull()`
 - added: `topPairs()`

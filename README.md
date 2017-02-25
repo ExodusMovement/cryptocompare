@@ -40,11 +40,12 @@ Usage
 
 Get the current price of any cryptocurrency in any other currency.
 
-`price(fsym, tsyms[, tryConversion])`
+`price(fsym, tsyms[, options])`
 
 - `fsym` (String) From Symbol
 - `tsyms` (Array of Strings | String) To Symbol(s)
-- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+- `options` (Object)
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
 const cc = require('cryptocompare')
@@ -70,11 +71,12 @@ cc.price('BTC', 'USD')
 
 Works like `price()`, except it allows you to specify a matrix of From Symbols.
 
-`priceMulti(fsyms, tsyms[, tryConversion])`
+`priceMulti(fsyms, tsyms[, options])`
 
 - `fsyms` (Array of Strings | String) From Symbol(s)
 - `tsyms` (Array of Strings | String) To Symbol(s)
-- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+- `options` (Object)
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
 const cc = require('cryptocompare')
@@ -101,11 +103,12 @@ cc.priceMulti('BTC', 'USD')
 
 Get all the current trading info (price, vol, open, high, low, etc.) of any list of cryptocurrencies in any other currency.
 
-`priceFull(fsyms, tsyms[, tryConversion])`
+`priceFull(fsyms, tsyms[, options])`
 
 - `fsyms` (Array of Strings | String) From Symbol(s)
 - `tsyms` (Array of Strings | String) To Symbol(s)
-- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+- `options` (Object)
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
 const cc = require('cryptocompare')
@@ -149,12 +152,13 @@ cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR'])
 
 Get the price of any cryptocurrency in any other currency at a given timestamp. The price comes from the daily info - so it would be the price at the end of the day GMT based on the requested timestamp.
 
-`priceHistorical(fsym, tsyms, time[, tryConversion])`
+`priceHistorical(fsym, tsyms, time[, options])`
 
 - `fsym` (String) From Symbol
 - `tsyms` (Array of Strings | String) To Symbol(s)
 - `time` (Date) Date in history that you want price data for
-- `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+- `options` (Object)
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
 
 ```js
 const cc = require('cryptocompare')

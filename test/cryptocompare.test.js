@@ -23,7 +23,7 @@ test('price() allows passing a string as the second parameter', t => {
 })
 
 test("price()'s tryConversion=false works", t => {
-  helpers.testTryConversion(cc.price(helpers.NOT_USD_TRADABLE, 'USD', false), t)
+  helpers.testTryConversion(cc.price(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
 })
 
 test('priceMulti()', t => {
@@ -46,7 +46,7 @@ test('priceMulti() allows passing strings instead of arrays', t => {
 })
 
 test("priceMulti()'s tryConversion=false works", t => {
-  helpers.testTryConversion(cc.priceMulti(helpers.NOT_USD_TRADABLE, 'USD', false), t)
+  helpers.testTryConversion(cc.priceMulti(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
 })
 
 test('priceFull()', t => {
@@ -80,7 +80,7 @@ test('priceFull() allows passing strings instead of arrays', t => {
 })
 
 test("priceFull()'s tryConversion=false works", t => {
-  helpers.testTryConversion(cc.priceFull(helpers.NOT_USD_TRADABLE, 'USD', false), t)
+  helpers.testTryConversion(cc.priceFull(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
 })
 
 test('priceHistorical()', t => {
@@ -97,7 +97,13 @@ test('priceHistorical()', t => {
 
 test("priceHistorical()'s tryConversion=false works", t => {
   const timestamp = new Date('2017-01-01')
-  helpers.testTryConversion(cc.priceHistorical(helpers.NOT_USD_TRADABLE, 'USD', timestamp, false), t)
+  helpers.testTryConversion(
+    cc.priceHistorical(
+      helpers.NOT_USD_TRADABLE,
+      'USD',
+      timestamp,
+      { tryConversion: false }
+    ), t)
 })
 
 test('generateAvg()', t => {
