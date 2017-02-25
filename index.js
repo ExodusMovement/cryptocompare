@@ -74,6 +74,17 @@ function histoHour (fsym, tsym, options) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function histoMinute (fsym, tsym, options) {
+  options = options || {}
+  if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
+  let url = `${baseUrl}histominute?fsym=${fsym}&tsym=${tsym}`
+  if (options.limit) url += `&limit=${options.limit}`
+  if (options.tryConversion === false) url += '&tryConversion=false'
+  if (options.aggregate) url += `&aggregate=${options.aggregate}`
+  if (options.timestamp) url += `&toTs=${options.timestamp}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 function dateToTimestamp (date) {
   if (!(date instanceof Date)) throw new Error('timestamp must be an instance of Date.')
   return Math.floor(date.getTime() / 1000)
@@ -87,5 +98,6 @@ module.exports = {
   topPairs,
   topExchanges,
   histoDay,
-  histoHour
+  histoHour,
+  histoMinute
 }
