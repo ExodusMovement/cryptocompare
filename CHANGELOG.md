@@ -11,6 +11,7 @@ Switched to https://min-api.cryptocompare.com/
 - added: `topPairs()`
 - added: `topExchanges()`
 - added: `histoDay()`
+- added: `histoHour()`
 
 0.0.2 / 2016-11-21
 ------------------

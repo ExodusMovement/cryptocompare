@@ -67,6 +67,20 @@ function histoDay (fsym, tsym, options) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function histoHour (fsym, tsym, options) {
+  options = options || {}
+  if (options.timestamp) {
+    if (!(options.timestamp instanceof Date)) throw new Error('options.timestamp must be an instance of Date.')
+    options.timestamp = Math.floor(options.timestamp.getTime() / 1000)
+  }
+  let url = `${baseUrl}histohour?fsym=${fsym}&tsym=${tsym}`
+  if (options.limit) url += `&limit=${options.limit}`
+  if (options.tryConversion === false) url += '&tryConversion=false'
+  if (options.aggregate) url += `&aggregate=${options.aggregate}`
+  if (options.timestamp) url += `&toTs=${options.timestamp}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 module.exports = {
   price,
   priceMulti,
@@ -74,5 +88,6 @@ module.exports = {
   priceHistorical,
   topPairs,
   topExchanges,
-  histoDay
+  histoDay,
+  histoHour
 }

@@ -257,6 +257,36 @@ cc.histoDay('BTC', 'USD')
 .catch(console.error)
 ```
 
+### `histoHour()`
+
+Get open, high, low, close, volumefrom and volumeto from the hourly historical data.
+
+`histoHour(fsym, tsym[, options])`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+- `options` (Object)
+  - `aggregate` (Number) Number of data points to aggregate.
+  - `limit` (Number) Limit the number of hours to lookup. Default is 168.
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `timestamp` (Date) By default, `histoHour()` gets historical data for the past several hours. Use the `timestamp` option to set a historical start point.
+
+```js
+cc.histoHour('BTC', 'USD')
+.then(data => {
+  console.log(data)
+  // -> [ { time: 1487448000,
+  //        close: 1060.34,
+  //        high: 1061.44,
+  //        low: 1058.85,
+  //        open: 1059.24,
+  //        volumefrom: 739.6,
+  //        volumeto: 790019.22 },
+  //        ... ]
+})
+.catch(console.error)
+```
+
 ## License
 
 [MIT](LICENSE.md)
