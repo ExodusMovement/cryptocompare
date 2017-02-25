@@ -52,11 +52,27 @@ function topExchanges (fsym, tsym, limit) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function histoDay (fsym, tsym, options) {
+  options = options || {}
+  if (options.timestamp) {
+    if (!(options.timestamp instanceof Date)) throw new Error('options.timestamp must be an instance of Date.')
+    options.timestamp = Math.floor(options.timestamp.getTime() / 1000)
+  }
+  let url = `${baseUrl}histoday?fsym=${fsym}&tsym=${tsym}`
+  if (options.limit === 'none') url += '&allData=true'
+  else if (options.limit) url += `&limit=${options.limit}`
+  if (options.tryConversion === false) url += '&tryConversion=false'
+  if (options.aggregate) url += `&aggregate=${options.aggregate}`
+  if (options.timestamp) url += `&toTs=${options.timestamp}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 module.exports = {
   price,
   priceMulti,
   priceFull,
   priceHistorical,
   topPairs,
-  topExchanges
+  topExchanges,
+  histoDay
 }

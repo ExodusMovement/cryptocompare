@@ -227,6 +227,36 @@ cc.topExchanges('BTC', 'USD', 2)
 .catch(console.error)
 ```
 
+### `histoDay()`
+
+Get open, high, low, close, volumefrom and volumeto from the daily historical data. The values are based on 00:00 GMT time.
+
+`histoDay(fsym, tsym[, options])`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+- `options` (Object)
+  - `aggregate` (Number) Number of data points to aggregate.
+  - `limit` (Number | `'none'`) Limit the number of days to lookup. Default is 30. If you set it to the string `'none'`, you will get all available data.
+  - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `timestamp` (Date) By default, `histoDay()` gets historical data for the past several days. Use the `timestamp` option to set a historical start point.
+
+```js
+cc.histoDay('BTC', 'USD')
+.then(data => {
+  console.log(data)
+  // -> [ { time: 1485388800,
+  //        close: 915.65,
+  //        high: 917.71,
+  //        low: 893.81,
+  //        open: 893.97,
+  //        volumefrom: 35494.93,
+  //        volumeto: 32333344.2 },
+  //        ... ]
+})
+.catch(console.error)
+```
+
 ## License
 
 [MIT](LICENSE.md)
