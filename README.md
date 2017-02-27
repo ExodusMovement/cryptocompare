@@ -46,6 +46,7 @@ Get the current price of any cryptocurrency in any other currency.
 - `tsyms` (Array of Strings | String) To Symbol(s)
 - `options` (Object)
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `exchanges` (Array of Strings | Array) Exchanges to get price data from. By default, average data is used. (You can get a list of top exchanges for a given pair with `topExchanges()`.)
 
 ```js
 const cc = require('cryptocompare')
@@ -77,6 +78,7 @@ Works like `price()`, except it allows you to specify a matrix of From Symbols.
 - `tsyms` (Array of Strings | String) To Symbol(s)
 - `options` (Object)
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `exchanges` (Array of Strings | Array) Exchanges to get price data from. By default, average data is used. (You can get a list of top exchanges for a given pair with `topExchanges()`.)
 
 ```js
 const cc = require('cryptocompare')
@@ -109,6 +111,7 @@ Get all the current trading info (price, vol, open, high, low, etc.) of any list
 - `tsyms` (Array of Strings | String) To Symbol(s)
 - `options` (Object)
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `exchanges` (Array of Strings | Array) Exchanges to get price data from. By default, average data is used. (You can get a list of top exchanges for a given pair with `topExchanges()`.)
 
 ```js
 const cc = require('cryptocompare')
@@ -159,6 +162,7 @@ Get the price of any cryptocurrency in any other currency at a given timestamp. 
 - `time` (Date) Date in history that you want price data for
 - `options` (Object)
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
+  - `exchanges` (Array of Strings | Array) Exchanges to get price data from. By default, average data is used. (You can get a list of top exchanges for a given pair with `topExchanges()`.)
 
 ```js
 const cc = require('cryptocompare')

@@ -15,6 +15,7 @@ Switched to https://min-api.cryptocompare.com/
 - added: `histoHour()`
 - added: `histoMinute()`
 - added: `generateAvg()`
+- added: `exchanges` option for methods that support it
 
 0.0.2 / 2016-11-21
 ------------------

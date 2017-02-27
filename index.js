@@ -15,6 +15,7 @@ function fetchJSON (url) {
 function price (fsym, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}price?fsym=${fsym}&tsyms=${tsyms}`
+  if (options.exchanges) url += `&e=${options.exchanges}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   return fetchJSON(url)
 }
@@ -22,6 +23,7 @@ function price (fsym, tsyms, options) {
 function priceMulti (fsyms, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}pricemulti?fsyms=${fsyms}&tsyms=${tsyms}`
+  if (options.exchanges) url += `&e=${options.exchanges}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   return fetchJSON(url)
 }
@@ -29,6 +31,7 @@ function priceMulti (fsyms, tsyms, options) {
 function priceFull (fsyms, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}pricemultifull?fsyms=${fsyms}&tsyms=${tsyms}`
+  if (options.exchanges) url += `&e=${options.exchanges}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   // We want the RAW data, not the DISPLAY data:
   return fetchJSON(url).then(result => result.RAW)
@@ -38,6 +41,7 @@ function priceHistorical (fsym, tsyms, time, options) {
   options = options || {}
   time = dateToTimestamp(time)
   let url = `${baseUrl}pricehistorical?fsym=${fsym}&tsyms=${tsyms}&ts=${time}`
+  if (options.exchanges) url += `&e=${options.exchanges}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   // The API returns json with an extra layer of nesting, so remove it
   return fetchJSON(url).then(result => result[fsym])

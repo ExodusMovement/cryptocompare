@@ -26,6 +26,28 @@ test("price()'s tryConversion=false works", t => {
   helpers.testTryConversion(cc.price(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
 })
 
+test("price()'s exchanges option works", t => {
+  t.plan(1)
+  Promise.all([
+    cc.price('BTC', 'USD'),
+    cc.price('BTC', 'USD', { exchanges: ['Coinbase'] })
+  ]).then(data => {
+    t.notDeepEqual(data[0], data[1])
+    t.end()
+  })
+})
+
+test('exchanges option allows passing a string', t => {
+  t.plan(1)
+  Promise.all([
+    cc.price('BTC', 'USD'),
+    cc.price('BTC', 'USD', { exchanges: 'Coinbase' })
+  ]).then(data => {
+    t.notDeepEqual(data[0], data[1])
+    t.end()
+  })
+})
+
 test('priceMulti()', t => {
   t.plan(4)
   cc.priceMulti(['BTC', 'ETH'], ['USD', 'EUR']).then(prices => {
@@ -47,6 +69,17 @@ test('priceMulti() allows passing strings instead of arrays', t => {
 
 test("priceMulti()'s tryConversion=false works", t => {
   helpers.testTryConversion(cc.priceMulti(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
+})
+
+test("priceMulti()'s exchanges option works", t => {
+  t.plan(1)
+  Promise.all([
+    cc.priceMulti('BTC', 'USD'),
+    cc.priceMulti('BTC', 'USD', { exchanges: ['Coinbase'] })
+  ]).then(data => {
+    t.notDeepEqual(data[0], data[1])
+    t.end()
+  })
 })
 
 test('priceFull()', t => {
@@ -83,6 +116,17 @@ test("priceFull()'s tryConversion=false works", t => {
   helpers.testTryConversion(cc.priceFull(helpers.NOT_USD_TRADABLE, 'USD', { tryConversion: false }), t)
 })
 
+test("priceFull()'s exchanges option works", t => {
+  t.plan(1)
+  Promise.all([
+    cc.priceFull('BTC', 'USD'),
+    cc.priceFull('BTC', 'USD', { exchanges: ['Coinbase'] })
+  ]).then(data => {
+    t.notDeepEqual(data[0], data[1])
+    t.end()
+  })
+})
+
 test('priceHistorical()', t => {
   t.plan(3)
   // NOTE: Historical values are hard-coded into this test
@@ -104,6 +148,18 @@ test("priceHistorical()'s tryConversion=false works", t => {
       timestamp,
       { tryConversion: false }
     ), t)
+})
+
+test("priceHistorical()'s exchanges option works", t => {
+  t.plan(1)
+  const timestamp = new Date()
+  Promise.all([
+    cc.priceHistorical('BTC', 'USD', timestamp),
+    cc.priceHistorical('BTC', 'USD', timestamp, { exchanges: ['Coinbase'] })
+  ]).then(data => {
+    t.notDeepEqual(data[0], data[1])
+    t.end()
+  })
 })
 
 test('generateAvg()', t => {
