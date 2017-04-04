@@ -1,5 +1,5 @@
-Unreleased
-----------
+0.1.0 / 2017-04-04
+------------------
 
 Switched to https://min-api.cryptocompare.com/
 
