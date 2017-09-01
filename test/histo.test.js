@@ -110,8 +110,8 @@ test("histoMinute()'s limit option works", t => {
 test("histoMinute()'s timestamp option works", t => {
   t.plan(1)
   let data = []
-  data.push(cc.histoMinute('BTC', 'USD', { timestamp: new Date('2017-01-01') }))
-  data.push(cc.histoMinute('BTC', 'USD', { timestamp: new Date('2017-01-02') }))
+  data.push(cc.histoMinute('BTC', 'USD', { timestamp: new Date() }))
+  data.push(cc.histoMinute('BTC', 'USD', { timestamp: new Date(Date.now() - (1000 * 60 * 60 * 24)) }))
   Promise.all(data).then(data => {
     t.notDeepEqual(data[0], data[1], 'data from different days should not be equivalent')
     t.end()

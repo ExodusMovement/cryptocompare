@@ -133,7 +133,7 @@ test('priceHistorical()', t => {
   const timestamp = new Date('2017-01-01')
   cc.priceHistorical('BTC', ['USD', 'EUR'], timestamp).then(prices => {
     t.strictEqual(typeof prices.USD, 'number', 'prices.USD is a number')
-    t.is(prices.USD, 997, 'Correct historical value')
+    t.is(prices.USD, 995.44, 'Correct historical value')
     t.strictEqual(typeof prices.EUR, 'number', 'prices.EUR is a number')
     t.end()
   }).catch(t.end)
