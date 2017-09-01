@@ -1,3 +1,8 @@
+0.2.0 / 2017-09-01
+------------------
+
+- added: `exchange` option to `histoDay()`, `histoHour()`, & `histoMinute()`
+
 0.1.0 / 2017-04-04
 ------------------
 
