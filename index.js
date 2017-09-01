@@ -69,6 +69,7 @@ function histoDay (fsym, tsym, options) {
   options = options || {}
   if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
   let url = `${baseUrl}histoday?fsym=${fsym}&tsym=${tsym}`
+  if (options.exchange) url += `&e=${options.exchange}`
   if (options.limit === 'none') url += '&allData=true'
   else if (options.limit) url += `&limit=${options.limit}`
   if (options.tryConversion === false) url += '&tryConversion=false'
@@ -81,6 +82,7 @@ function histoHour (fsym, tsym, options) {
   options = options || {}
   if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
   let url = `${baseUrl}histohour?fsym=${fsym}&tsym=${tsym}`
+  if (options.exchange) url += `&e=${options.exchange}`
   if (options.limit) url += `&limit=${options.limit}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   if (options.aggregate) url += `&aggregate=${options.aggregate}`
@@ -92,6 +94,7 @@ function histoMinute (fsym, tsym, options) {
   options = options || {}
   if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
   let url = `${baseUrl}histominute?fsym=${fsym}&tsym=${tsym}`
+  if (options.exchange) url += `&e=${options.exchange}`
   if (options.limit) url += `&limit=${options.limit}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   if (options.aggregate) url += `&aggregate=${options.aggregate}`
