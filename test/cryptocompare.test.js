@@ -5,6 +5,15 @@ if (!global.fetch) global.fetch = require('node-fetch')
 const cc = require('../')
 const helpers = require('./helpers')
 
+test('coinList()', t => {
+  t.plan(2)
+  cc.coinList().then(coins => {
+    t.strictEqual(typeof coins.Data.LTC.Name, 'string', 'coins.Data.LTC.Name` is a string')
+    t.strictEqual(coins.Data.LTC.Name, 'LTC', 'coins.Data.LTC.Name is \'LTC\'')
+    t.end()
+  }).catch(t.end)
+})
+
 test('price()', t => {
   t.plan(2)
   cc.price('BTC', ['USD', 'EUR']).then(prices => {
