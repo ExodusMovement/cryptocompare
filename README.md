@@ -36,6 +36,66 @@ Usage
 
 ### Methods
 
+### `coinList()`
+
+Get the current list of all cryptocurrencies and the following information about each coin.
+
+`coinList()`
+
+- `No parameters`
+- `Returns` (Object)...
+  - `BaseImageUrl` (String) The base url for all the images from the ImageUrl field (https://www.cryptocompare.com),
+  - `BaseLinkUrl` The base url for all the links from the Url field (https://www.cryptocompare.com)
+  - `Data` (Object) Contains the following infomration about each coin.
+    - `Id` (String)
+    - `Url` (String) Url to the CryptoCompare page for the coin. (Ex: `/coins/eth/overview`) Url must be appended to `https://www.cryptocompare.com`.
+    - `ImageUrl` (String) Url to get the coin logo image. (Ex: `/media/351001/404.png`). Url must be appended to `https://www.cryptocompare.com`.
+    - `Name` (String) Ticker name of the given cryptocurrency.
+    - `Symbol` (String) Ticker symbol of the given cryptocurrency (usually the same as the name).
+    - `CoinName` (String) Name of the given cryptocurrency.
+    - `FullName` (String) Name of the given cryptocurrency concatenated with the symbol (Ex: `Ethereum (ETH)`).
+    - `Algorithm` (String) Name cryptographic algorithm for that coin.
+    - `ProofType` (String) The proof type of the cryptocurrency.
+    - `ProofType` (String) The proof type of the cryptocurrency.
+    - `FullyPremined` (String) Returns "1" if the coin was premined, if not it returns "0".
+    - `TotalCoinSupply` (String) Total supply of the cryptocurrency.
+    - `PreMinedValue` (String) Value of premined coins.
+    - `TotalCoinsFreeFloat` (String)
+    - `SortOrder` (String) The order CryptoCompare ranks the coin inside their internal system.
+    - `Sponsored` (Boolean) Is `true` when the coin is sponsored by CryptoCompare, is `false` otherwise.
+
+```js
+const cc = require('cryptocompare')
+
+// Usage:
+cc.coinList()
+.then(coinList => {
+  console.log(coinList)
+  // ->
+  // {
+  //   BTC: {
+  //    Id: "1182",
+  //    Url: "/coins/btc/overview",
+  //    ImageUrl: "/media/19633/btc.png",
+  //    Name: "BTC",
+  //    Symbol: "BTC",
+  //    CoinName: "Bitcoin",
+  //    FullName: "Bitcoin (BTC)",
+  //    Algorithm: "SHA256",
+  //    ProofType: "PoW",
+  //    FullyPremined: "0",
+  //    TotalCoinSupply: "21000000",
+  //    PreMinedValue: "N/A",
+  //    TotalCoinsFreeFloat: "N/A",
+  //    SortOrder: "1",
+  //    Sponsored: false
+  // },
+  //   ETH: {...},
+  // }
+})
+.catch(console.error)
+```
+
 ### `price()`
 
 Get the current price of any cryptocurrency in any other currency.
