@@ -11,7 +11,9 @@ function fetchJSON (url) {
       return body
     })
 }
-
+function coinList(){
+  return fetchJSON(`${baseUrl}coinlist`)
+}
 function price (fsym, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}price?fsym=${fsym}&tsyms=${tsyms}`
