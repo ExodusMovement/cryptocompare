@@ -1,6 +1,7 @@
 'use strict'
 /* global fetch */
 
+const ccUrl = 'https://www.cryptocompare.com/api/data/'
 const baseUrl = 'https://min-api.cryptocompare.com/data/'
 
 function fetchJSON (url) {
@@ -10,6 +11,11 @@ function fetchJSON (url) {
       if (body.Response === 'Error') throw body.Message
       return body
     })
+}
+
+function coinList () {
+  let url = `${ccUrl}coinlist/`
+  return fetchJSON(url)
 }
 
 function price (fsym, tsyms, options) {
@@ -108,6 +114,7 @@ function dateToTimestamp (date) {
 }
 
 module.exports = {
+  coinList,
   price,
   priceMulti,
   priceFull,
