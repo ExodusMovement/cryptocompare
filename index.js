@@ -12,6 +12,11 @@ function fetchJSON (url) {
     })
 }
 
+function coinList () {
+  const url = `${baseUrl}all/coinlist`
+  return fetchJSON(url)
+}
+
 function price (fsym, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}price?fsym=${fsym}&tsyms=${tsyms}`
@@ -108,6 +113,7 @@ function dateToTimestamp (date) {
 }
 
 module.exports = {
+  coinList,
   price,
   priceMulti,
   priceFull,

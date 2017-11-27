@@ -5,6 +5,17 @@ if (!global.fetch) global.fetch = require('node-fetch')
 const cc = require('../')
 const helpers = require('./helpers')
 
+test('coinList()', t => {
+  t.plan(4)
+  cc.coinList().then(coins => {
+    t.strictEqual(typeof coins.Data.ETH.Name, 'string', 'coins.Data.ETH.Name` is a string')
+    t.strictEqual(coins.Data.ETH.Name, 'ETH', 'coins.Data.ETH.Name is \'ETH\'')
+    t.strictEqual(coins.Data.ETH.FullName, 'Ethereum (ETH)', 'coins.Data.ETH.FullName is \'Ethereum (ETH)\'')
+    t.strictEqual(coins.Data.ETH.Sponsored, false, 'coins.Data.ETH.Sponsored is \'false\'')
+    t.end()
+  }).catch(t.end)
+})
+
 test('price()', t => {
   t.plan(2)
   cc.price('BTC', ['USD', 'EUR']).then(prices => {
