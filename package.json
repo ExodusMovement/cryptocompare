@@ -1,7 +1,7 @@
 {
   "name": "cryptocompare",
   "description": "CryptoCompare JavaScript API",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "JP Richardson <jprichardson@gmail.com>",
   "bugs": {
     "url": "https://github.com/exodusmovement/cryptocompare/issues"

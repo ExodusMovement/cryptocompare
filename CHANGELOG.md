@@ -1,3 +1,9 @@
+0.3.0 / 2017-11-27
+------------------
+
+- added: `coinList()` method
+- fixed: `generateAvg()` was broken due to endpoint changes
+
 0.2.0 / 2017-09-01
 ------------------
 
