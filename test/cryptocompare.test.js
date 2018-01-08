@@ -16,6 +16,15 @@ test('coinList()', t => {
   }).catch(t.end)
 })
 
+test('exchangeList()', t => {
+  t.plan(2)
+  cc.exchangeList().then(exchanges => {
+    t.strictEqual(typeof exchanges, 'object', 'exchanges returned is an object')
+    t.notEqual(exchanges, null, 'exchanges returned is not null')
+    t.end()
+  }).catch(t.end)
+})
+
 test('price()', t => {
   t.plan(2)
   cc.price('BTC', ['USD', 'EUR']).then(prices => {

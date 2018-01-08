@@ -96,6 +96,37 @@ cc.coinList()
 .catch(console.error)
 ```
 
+### `exchangeList()`
+
+Returns all the exchanges that CryptoCompare has integrated with.
+
+`exchangeList()`
+
+- `No parameters`
+- `Returns` (Object)
+
+```js
+const cc = require('cryptocompare')
+
+// Usage:
+cc.exchangeList()
+.then(exchangeList => {
+  console.log(exchangeList)
+  // {
+  //   "Cryptsy":
+  //   {
+  //     "42":["BTC","XRP"],
+  //     "EMC2":["BTC","XRP"],
+  //     "POINTS":["BTC"],
+  //     "VTC":["BTC","LTC","XRP"]
+  //     ...
+  //   }
+  //   ...
+  // }
+})
+.catch(console.error)
+```
+
 ### `price()`
 
 Get the current price of any cryptocurrency in any other currency.

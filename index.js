@@ -17,6 +17,11 @@ function coinList () {
   return fetchJSON(url)
 }
 
+function exchangeList () {
+  const url = `${baseUrl}all/exchanges`
+  return fetchJSON(url)
+}
+
 function price (fsym, tsyms, options) {
   options = options || {}
   let url = `${baseUrl}price?fsym=${fsym}&tsyms=${tsyms}`
@@ -114,6 +119,7 @@ function dateToTimestamp (date) {
 
 module.exports = {
   coinList,
+  exchangeList,
   price,
   priceMulti,
   priceFull,
