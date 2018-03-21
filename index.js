@@ -7,7 +7,7 @@ function fetchJSON (url) {
   return fetch(url)
     .then(res => {
       if (!res.ok) {
-        throw Error(res.status + " " + res.statusText)
+        throw Error(res.status + ' ' + res.statusText)
       }
       return res
     })
