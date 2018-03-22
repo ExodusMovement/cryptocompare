@@ -9,9 +9,8 @@ function fetchJSON (url) {
       if (!res.ok) {
         throw new Error(`${res.status} ${res.statusText}`)
       }
-      return res
+      return res.json()
     })
-    .then(res => res.json())
     .then(body => {
       if (body.Response === 'Error') throw body.Message
       return body
