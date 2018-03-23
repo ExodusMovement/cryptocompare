@@ -5,7 +5,12 @@ const baseUrl = 'https://min-api.cryptocompare.com/data/'
 
 function fetchJSON (url) {
   return fetch(url)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`)
+      }
+      return res.json()
+    })
     .then(body => {
       if (body.Response === 'Error') throw body.Message
       return body
