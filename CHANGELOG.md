@@ -1,3 +1,8 @@
+0.5.0 / 2018-03-23
+------------------
+
+- changed: Handles HTTP status errors; throws on non-2xx error codes [#20](https://github.com/ExodusMovement/cryptocompare/pull/20)
+
 0.4.0 / 2018-01-09
 ------------------
 
