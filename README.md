@@ -365,6 +365,16 @@ cc.topExchanges('BTC', 'USD', 2)
 .catch(console.error)
 ```
 
+### `topExchangesFull()`
+
+Get full data on top exchanges by volume for a currency pair.
+
+`topExchangesFull(fsym, tsym[, limit])`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+- `limit` (Number) Limit the number of exchanges you receive (default 5).
+
 ### `histoDay()`
 
 Get open, high, low, close, volumefrom and volumeto from the daily historical data. The values are based on 00:00 GMT time.

@@ -80,6 +80,12 @@ function topExchanges (fsym, tsym, limit) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function topExchangesFull (fsym, tsym, limit) {
+  let url = `${baseUrl}top/exchanges/full?fsym=${fsym}&tsym=${tsym}`
+  if (limit) url += `&limit=${limit}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 function histoDay (fsym, tsym, options) {
   options = options || {}
   if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
@@ -139,6 +145,7 @@ module.exports = {
   generateAvg,
   topPairs,
   topExchanges,
+  topExchangesFull,
   histoDay,
   histoHour,
   histoMinute
