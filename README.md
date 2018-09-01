@@ -458,6 +458,24 @@ cc.histoMinute('BTC', 'USD')
 .catch(console.error)
 ```
 
+### `convert()`
+
+Convert the current price of any cryptocurrency in any other currency that you need.
+
+`convert(fsym, tsym)`
+
+- `fsym` (String) From Symbol
+- `tsym` (String) To Symbol
+
+```js
+cc.convert('BTC', 'USD')
+.then(data => {
+  console.log(data)
+  // { USD: 7193.51 }
+})
+.catch(console.error)
+```
+
 ## License
 
 [MIT](LICENSE.md)
