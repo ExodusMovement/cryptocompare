@@ -122,6 +122,11 @@ function dateToTimestamp (date) {
   return Math.floor(date.getTime() / 1000)
 }
 
+function convert (fsym, tsym) {
+  let url = `${baseUrl}price?fsym=${fsym.toUpperCase()}&tsyms=${tsym.toUpperCase()}`
+  return fetchJSON(url)
+}
+
 module.exports = {
   coinList,
   exchangeList,
@@ -134,5 +139,6 @@ module.exports = {
   topExchanges,
   histoDay,
   histoHour,
-  histoMinute
+  histoMinute,
+  convert
 }

@@ -7,7 +7,7 @@
     "url": "https://github.com/exodusmovement/cryptocompare/issues"
   },
   "devDependencies": {
-    "node-fetch": "^1.5.3",
+    "node-fetch": "^1.7.3",
     "standard": "9.x",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
