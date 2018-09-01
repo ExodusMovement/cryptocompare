@@ -22,6 +22,11 @@ function coinList () {
   return fetchJSON(url)
 }
 
+function fiatList () {
+  const fiatSupported = ['AED', 'AFN', 'ALL', 'AMD', 'ARS', 'AUD', 'AZN', 'BAM', 'BDT', 'BGN', 'BHD', 'BIF', 'BND', 'BOB', 'BRL', 'BWP', 'BYR', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CZK', 'DKK', 'DOP', 'DZD', 'EGP', 'ETB', 'EUR', 'GBP', 'GEL', 'GHS', 'GTQ', 'HKD', 'HNL', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KHR', 'KRW', 'KWD', 'KZT', 'LBP', 'LKR', 'MAD', 'MDL', 'MGA', 'MMK', 'MOP', 'MUR', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SEK', 'SGD', 'THB', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VEF', 'VND', 'XAF', 'XOF', 'ZAR']
+  return fiatSupported
+}
+
 function exchangeList () {
   const url = `${baseUrl}all/exchanges`
   return fetchJSON(url)
@@ -124,6 +129,7 @@ function dateToTimestamp (date) {
 
 module.exports = {
   coinList,
+  fiatList,
   exchangeList,
   price,
   priceMulti,

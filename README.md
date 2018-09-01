@@ -96,6 +96,35 @@ cc.coinList()
 .catch(console.error)
 ```
 
+### `fiatList()`
+
+Get the current list of all fiat currencies supported by cryptocompare.
+
+`fiatList()`
+
+- `No parameters`
+- `Returns` (Array)...
+  
+
+```js
+const cc = require('cryptocompare')
+
+// Usage:
+  console.log(cc.fiatList)
+    // ->
+    // [ 'AED',
+    //   'AFN',
+    //   'ALL',
+    //   'AMD',
+    //   'ARS',
+    //   'AUD',
+    //   'AZN',
+    //   'BAM',
+    //   'BDT',
+    //   'BGN',
+    // ...]
+```
+
 ### `exchangeList()`
 
 Returns all the exchanges that CryptoCompare has integrated with.
