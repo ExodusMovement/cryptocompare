@@ -1,3 +1,9 @@
+0.6.0 / 2018-11-06
+------------------
+
+- added: `topExchangesFull()` method ([#22](https://github.com/exodusmovement/cryptocompare/pull/22))
+- added: support for `toTs`, `allData`, and `aggregatePredictableTimePeriods` options ([#31](https://github.com/exodusmovement/cryptocompare/pull/31))
+
 0.5.0 / 2018-03-23
 ------------------
 
