@@ -105,7 +105,6 @@ function histoHour (fsym, tsym, options) {
   if (options.tryConversion === false) url += '&tryConversion=false'
   if (options.aggregate) url += `&aggregate=${options.aggregate}`
   if (options.timestamp) url += `&toTs=${options.timestamp}`
-  if (options.aggregatePredictableTimePeriods) url += `&aggregatePredictableTimePeriods=${options.aggregatePredictableTimePeriods}`
   if (options.allData) url += `&allData=${options.allData}`
   if (options.toTs) url += `&toTs=${options.toTs}`
   return fetchJSON(url).then(result => result.Data)
@@ -120,7 +119,6 @@ function histoMinute (fsym, tsym, options) {
   if (options.tryConversion === false) url += '&tryConversion=false'
   if (options.aggregate) url += `&aggregate=${options.aggregate}`
   if (options.timestamp) url += `&toTs=${options.timestamp}`
-  if (options.aggregatePredictableTimePeriods) url += `&aggregatePredictableTimePeriods=${options.aggregatePredictableTimePeriods}`
   if (options.allData) url += `&allData=${options.allData}`
   if (options.toTs) url += `&toTs=${options.toTs}`
   return fetchJSON(url).then(result => result.Data)

@@ -376,7 +376,7 @@ Get open, high, low, close, volumefrom and volumeto from the daily historical da
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
-  - `allData` (Boolean) Returns all data (only available on histo day).
+  - `allData` (Boolean) Returns all data.
   - `toTs` (Boolean) Last unix timestamp to return data for.
   - `limit` (Number | `'none'`) Limit the number of days to lookup. Default is 30. If you set it to the string `'none'`, you will get all available data.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
@@ -410,7 +410,6 @@ Get open, high, low, close, volumefrom and volumeto from the hourly historical d
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
-  - `allData` (Boolean) Returns all data (only available on histo day).
   - `toTs` (Boolean) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of hours to lookup. Default is 168.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
@@ -444,7 +443,6 @@ Get open, high, low, close, volumefrom and volumeto from the minute-by-minute hi
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
-  - `allData` (Boolean) Returns all data (only available on histo day).
   - `toTs` (Boolean) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of minutes to lookup. Default is 1440.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
