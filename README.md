@@ -375,6 +375,9 @@ Get open, high, low, close, volumefrom and volumeto from the daily historical da
 - `tsym` (String) To Symbol
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
+  - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
+  - `allData` (Boolean) Returns all data (only available on histo day).
+  - `toTs` (Boolean) Last unix timestamp to return data for.
   - `limit` (Number | `'none'`) Limit the number of days to lookup. Default is 30. If you set it to the string `'none'`, you will get all available data.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoDay()` gets historical data for the past several days. Use the `timestamp` option to set a historical start point.
@@ -406,6 +409,9 @@ Get open, high, low, close, volumefrom and volumeto from the hourly historical d
 - `tsym` (String) To Symbol
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
+  - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
+  - `allData` (Boolean) Returns all data (only available on histo day).
+  - `toTs` (Boolean) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of hours to lookup. Default is 168.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoHour()` gets historical data for the past several hours. Use the `timestamp` option to set a historical start point.
@@ -437,6 +443,9 @@ Get open, high, low, close, volumefrom and volumeto from the minute-by-minute hi
 - `tsym` (String) To Symbol
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
+  - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
+  - `allData` (Boolean) Returns all data (only available on histo day).
+  - `toTs` (Boolean) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of minutes to lookup. Default is 1440.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoMinute()` gets historical data for the past several minutes. Use the `timestamp` option to set a historical start point.
