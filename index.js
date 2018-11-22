@@ -2,8 +2,21 @@
 /* global fetch */
 
 const baseUrl = 'https://min-api.cryptocompare.com/data/'
+let apiKey = ''
+
+function setApiKey(userApiKey){
+  apiKey = userApiKey
+}
 
 function fetchJSON (url) {
+  if(apiKey !== ''){
+    if (url.indexOf('?') > -1) {
+			url += '&api_key='
+		} else {
+			url += '?api_key='
+		}
+    url += apiKey
+  }
   return fetch(url)
     .then(res => {
       if (!res.ok) {
@@ -25,6 +38,23 @@ function coinList () {
 function exchangeList () {
   const url = `${baseUrl}all/exchanges`
   return fetchJSON(url)
+}
+
+function newsFeedsAndCategories () {
+  const url = `${baseUrl}data/news/feedsandcategories`
+  return fetchJSON(url)
+}
+
+function newsList (lang, options) {
+  let url = `${baseUrl}data/v2/news/?lang=${lang}`
+  if (options.feeds) url += `&feeds=${options.feeds}`
+  if (options.categories) url += `&categories=${options.categories}`
+  if (options.excludeCategories) url += `&categories=${options.excludeCategories}`
+  if (options.lTs) {
+    options.lTs = dateToTimestamp(options.lTs)
+    url += `&lTs=${options.lTs}`
+  }
+  return fetchJSON(url).then(result => result.Data)
 }
 
 function price (fsym, tsyms, options) {
@@ -136,8 +166,11 @@ function dateToTimestamp (date) {
 }
 
 module.exports = {
+  setApiKey,
   coinList,
   exchangeList,
+  newsFeedsAndCategories,
+  newsList,
   price,
   priceMulti,
   priceFull,
