@@ -27,7 +27,7 @@ Usage
 
 - If you are using this in electron, it should work without any configuration.
 - If you are using this in Node.js, you will need to use [`node-fetch`](https://www.npmjs.com/package/node-fetch).
-- The pakage works without an API key but the IP limits will solowly be reduced over time, to create an API key just go to https://www.cryptocompare.com/cryptopian/api-keys and make sure you give it the "Read All Price Streaming and Polling Endpoints" permission
+- The package works without an API key but the IP limits will slowly be reduced over time, to create an API key just go to https://www.cryptocompare.com/cryptopian/api-keys and make sure you give it the "Read All Price Streaming and Polling Endpoints" permission
 
   **Example:**
   ```js
