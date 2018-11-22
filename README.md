@@ -33,7 +33,7 @@ Usage
   ```js
   global.fetch = require('node-fetch')
   const cc = require('cryptocompare')
-  cc.setApiKey(<your-api-key>)
+  cc.setApiKey('<your-api-key>')
   ```
 
 ### Methods
@@ -68,7 +68,7 @@ Get the current list of all cryptocurrencies and the following information about
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Usage:
 cc.coinList()
@@ -110,7 +110,7 @@ Returns all the exchanges that CryptoCompare has integrated with.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Usage:
 cc.exchangeList()
@@ -145,7 +145,7 @@ Get the current price of any cryptocurrency in any other currency.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.price('BTC', ['USD', 'EUR'])
@@ -178,7 +178,7 @@ Works like `price()`, except it allows you to specify a matrix of From Symbols.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.priceMulti(['BTC', 'ETH'], ['USD', 'EUR'])
@@ -212,7 +212,7 @@ Get all the current trading info (price, vol, open, high, low, etc.) of any list
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR'])
 .then(prices => {
@@ -264,7 +264,7 @@ Get the price of any cryptocurrency in any other currency at a given timestamp. 
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.priceHistorical('BTC', ['USD', 'EUR'], new Date('2017-01-01'))
@@ -288,7 +288,7 @@ Compute the current trading info (price, vol, open, high, low etc) of the reques
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.generateAvg('BTC', 'USD', ['Coinbase', 'Kraken', 'Bitstamp', 'Bitfinex'])
@@ -326,7 +326,7 @@ Get top pairs by volume for a currency.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 cc.topPairs('BTC', 2)
 .then(pairs => {
@@ -357,7 +357,7 @@ Get top exchanges by volume for a currency pair.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 cc.topExchanges('BTC', 'USD', 2)
 .then(exchanges => {
@@ -500,7 +500,7 @@ Returns news articles from the providers that CryptoCompare has integrated with.
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.newsList('EN')
@@ -544,7 +544,7 @@ Returns all the news feeds (providers) that CryptoCompare has integrated with an
 
 ```js
 const cc = require('cryptocompare')
-cc.setApiKey(<your-api-key>)
+cc.setApiKey('<your-api-key>')
 
 // Usage:
 cc.exchangeList()
