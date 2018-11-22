@@ -492,6 +492,7 @@ Returns news articles from the providers that CryptoCompare has integrated with.
 
 `newsList(lang[, options])`
 
+- `lang` (String) Preferred language - English (EN) or Portuguese (PT)
 - `options` (Object)
   - `feeds` (Array of Strings | Array) Specific news feeds to retrieve news from, if empty, defaults to all of them. (You can get a list of news feeds with `newsFeedsAndCategories().Feeds`..)
   - `categories` (Array of Strings | Array) Category of news articles to return, if empty, defaults to all of them. (You can get a list of news categories with `newsFeedsAndCategories().Categories`..)
