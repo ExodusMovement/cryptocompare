@@ -42,7 +42,7 @@ function exchangeList () {
 
 function newsFeedsAndCategories () {
   const url = `${baseUrl}data/news/feedsandcategories`
-  return fetchJSON(url)
+  return fetchJSON(url).then(result => result.Data)
 }
 
 function newsList (lang, options) {
