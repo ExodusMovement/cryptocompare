@@ -11,10 +11,10 @@ function setApiKey(userApiKey){
 function fetchJSON (url) {
   if(apiKey !== ''){
     if (url.indexOf('?') > -1) {
-			url += '&api_key='
-		} else {
-			url += '?api_key='
-		}
+      url += '&api_key='
+    } else {
+      url += '?api_key='
+    }
     url += apiKey
   }
   return fetch(url)
