@@ -4,12 +4,12 @@
 const baseUrl = 'https://min-api.cryptocompare.com/data/'
 let apiKey = ''
 
-function setApiKey(userApiKey){
+function setApiKey (userApiKey) {
   apiKey = userApiKey
 }
 
 function fetchJSON (url) {
-  if(apiKey !== ''){
+  if (apiKey !== '') {
     if (url.indexOf('?') > -1) {
       url += '&api_key='
     } else {
