@@ -1,3 +1,9 @@
+0.7.0 / 2018-11-26
+------------------
+
+- added: API key support via `setApiKey()` ([#32](https://github.com/exodusmovement/cryptocompare/pull/32))
+- added: `newsList()` & `newsFeedsAndCategories()` methods ([#32](https://github.com/exodusmovement/cryptocompare/pull/32))
+
 0.6.0 / 2018-11-06
 ------------------
 
