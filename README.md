@@ -27,11 +27,13 @@ Usage
 
 - If you are using this in electron, it should work without any configuration.
 - If you are using this in Node.js, you will need to use [`node-fetch`](https://www.npmjs.com/package/node-fetch).
+- The package works without an API key but the IP limits will slowly be reduced over time, to create an API key just go to https://www.cryptocompare.com/cryptopian/api-keys and make sure you give it the "Read All Price Streaming and Polling Endpoints" permission
 
   **Example:**
   ```js
   global.fetch = require('node-fetch')
   const cc = require('cryptocompare')
+  cc.setApiKey('<your-api-key>')
   ```
 
 ### Methods
@@ -66,6 +68,7 @@ Get the current list of all cryptocurrencies and the following information about
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Usage:
 cc.coinList()
@@ -107,6 +110,7 @@ Returns all the exchanges that CryptoCompare has integrated with.
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Usage:
 cc.exchangeList()
@@ -141,6 +145,7 @@ Get the current price of any cryptocurrency in any other currency.
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.price('BTC', ['USD', 'EUR'])
@@ -173,6 +178,7 @@ Works like `price()`, except it allows you to specify a matrix of From Symbols.
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.priceMulti(['BTC', 'ETH'], ['USD', 'EUR'])
@@ -206,6 +212,7 @@ Get all the current trading info (price, vol, open, high, low, etc.) of any list
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 cc.priceFull(['BTC', 'ETH'], ['USD', 'EUR'])
 .then(prices => {
@@ -257,6 +264,7 @@ Get the price of any cryptocurrency in any other currency at a given timestamp. 
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.priceHistorical('BTC', ['USD', 'EUR'], new Date('2017-01-01'))
@@ -280,6 +288,7 @@ Compute the current trading info (price, vol, open, high, low etc) of the reques
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 // Basic Usage:
 cc.generateAvg('BTC', 'USD', ['Coinbase', 'Kraken', 'Bitstamp', 'Bitfinex'])
@@ -317,6 +326,7 @@ Get top pairs by volume for a currency.
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 cc.topPairs('BTC', 2)
 .then(pairs => {
@@ -347,6 +357,7 @@ Get top exchanges by volume for a currency pair.
 
 ```js
 const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
 
 cc.topExchanges('BTC', 'USD', 2)
 .then(exchanges => {
@@ -471,6 +482,95 @@ cc.histoMinute('BTC', 'USD')
   //        volumefrom: 25.06,
   //        volumeto: 29324.12 },
   //        ... ]
+})
+.catch(console.error)
+```
+
+### `newsList()`
+
+Returns news articles from the providers that CryptoCompare has integrated with.
+
+`newsList(lang[, options])`
+
+- `lang` (String) Preferred language - English (EN) or Portuguese (PT)
+- `options` (Object)
+  - `feeds` (Array of Strings | Array) Specific news feeds to retrieve news from, if empty, defaults to all of them. (You can get a list of news feeds with `newsFeedsAndCategories().Feeds`..)
+  - `categories` (Array of Strings | Array) Category of news articles to return, if empty, defaults to all of them. (You can get a list of news categories with `newsFeedsAndCategories().Categories`..)
+  - `excludeCategories` (Array of Strings | Array) News article categories to exclude from results, if empty, defaults to none. (You can get a list of news categories with `newsFeedsAndCategories().Categories`..)
+  - `lTs` (Date) Returns news before that timestamp
+
+```js
+const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
+
+// Basic Usage:
+cc.newsList('EN')
+.then(newsList => {
+  console.log(newsList)
+  //[ 
+  //  {
+  //    id:  "708235"
+  //    guid: "https://www.cryptoglobe.com/latest/2018/11/china-cryptocurrency-mining-machines-are-reportedly-being-sold-according-to-their-weight/"
+  //    published_on: 1542886256
+  //    imageurl: "https://images.cryptocompare.com/news/cryptoglobe/fwMg0080000.jpeg"
+  //    title: "China: Cryptocurrency Mining Machines Reportedly Being Sold According to Their Weight"
+  //    url: "https://www.cryptoglobe.com/latest/2018/11/china-cryptocurrency-mining-machines-are-reportedly-being-sold-according-to-their-weight/"
+  //    source:  "cryptoglobe"
+  //    body: "Cryptocurrency mining machines are reportedly being sold in China according to their weight as miners who haven’t been able to make a profit are seemingly getting rid of their old models to get some of their investment back."
+  //    tags:  ""
+  //    categories:  "Mining|Asia|Business"
+  //    upvotes:  "0"
+  //    downvotes:  "0"
+  //    lang:  "EN"
+  //    source_info: {
+  //      name:  "CryptoGlobe"
+  //      lang:  "EN"
+  //      img: "https://images.cryptocompare.com/news/default/cryptoglobe.png"
+  //    }
+  //  }
+  //  ....
+  //]
+})
+.catch(console.error)
+```
+
+### `newsFeedsAndCategories()`
+
+Returns all the news feeds (providers) that CryptoCompare has integrated with and the full list of categories.
+
+`newsFeedsAndCategories()`
+
+- `No parameters`
+- `Returns` (Object)
+
+```js
+const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
+
+// Usage:
+cc.exchangeList()
+.then(newsFeedsAndCategories => {
+  console.log(newsFeedsAndCategories)
+  // {
+  //   "Categories":
+  //   [
+  //      {
+  //        categoryName:  "BTC"
+  //        wordsAssociatedWithCategory: ["BTC","BITCOIN", "SATOSHI"]
+  //      }
+  //     ...
+  //   ]
+  //  "Feeds":
+  //  [
+  //    {
+  //      key:  "cryptocompare"
+  //      name:  "CryptoCompare"
+  //      lang:  "EN"
+  //      img: "https://images.cryptocompare.com/news/default/cryptocompare.png"
+  //    }
+  //    ...
+  //  ]
+  // }
 })
 .catch(console.error)
 ```
