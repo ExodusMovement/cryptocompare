@@ -46,6 +46,7 @@ function newsFeedsAndCategories () {
 }
 
 function newsList (lang, options) {
+  options = options || {}
   let url = `${baseUrl}data/v2/news/?lang=${lang}`
   if (options.feeds) url += `&feeds=${options.feeds}`
   if (options.categories) url += `&categories=${options.categories}`
