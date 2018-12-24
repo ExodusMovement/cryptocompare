@@ -1,3 +1,8 @@
+0.7.1 / 2018-12-24
+------------------
+
+- Fix bug in `newsList()` ([#33](https://github.com/exodusmovement/cryptocompare/pull/33))
+
 0.7.0 / 2018-11-26
 ------------------
 
