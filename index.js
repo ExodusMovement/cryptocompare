@@ -80,7 +80,13 @@ function priceFull (fsyms, tsyms, options) {
   if (options.exchanges) url += `&e=${options.exchanges}`
   if (options.tryConversion === false) url += '&tryConversion=false'
   // We want the RAW data, not the DISPLAY data:
-  return fetchJSON(url).then(result => result.RAW)
+  if (options.dataType == "display") {
+      return fetchJSON(url).then(result => result.DISPLAY)
+    } else if (options.dataType == "both") {
+      return fetchJSON(url)
+    } else {
+      return fetchJSON(url).then(result => result.RAW)
+    }
 }
 
 function priceHistorical (fsym, tsyms, time, options) {
