@@ -40,6 +40,13 @@ function exchangeList () {
   return fetchJSON(url)
 }
 
+function constituentExchangeList (options) {
+  options = options || {}
+  let url = `${baseUrl}all/includedexchanges`
+  if (options.instrument) url += `?instrument=${options.instrument}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 function newsFeedsAndCategories () {
   const url = `${baseUrl}news/feedsandcategories`
   return fetchJSON(url).then(result => result.Data)
@@ -166,9 +173,29 @@ function dateToTimestamp (date) {
   return Math.floor(date.getTime() / 1000)
 }
 
+function latestSocial (options) {
+  options = options || {}
+  let url = `${baseUrl}social/coin/latest`
+  if (options.coinId) url += `?coinId=${options.coinId}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
+function histoSocial (timePeriod, options) {
+  options = options || {}
+  let url = `${baseUrl}social/coin/histo/${timePeriod === 'hour' ? 'hour' : 'day'}`
+  let query = []
+  if (options.coinId) query.push(`coinId=${options.coinId}`)
+  if (options.aggregate >= 1 && options.aggregate <= 30) query.push(`aggregate=${options.aggregate}`)
+  if (options.aggregate && typeof options.aggregatePredictableTimePeriods === 'boolean') query.push(`&aggregatePredictableTimePeriods=${options.aggregatePredictableTimePeriods}`)
+  if (options.limit >= 1 && options.limit <= 2000) query.push(`limit=${options.limit}`)
+  if (options.toTs) query.push(`toTs=${options.toTs}`)
+  return fetchJSON(`${url}${query.length > 0 ? '?' + query.join('&') : ''}`).then(result => result.Data)
+}
+
 module.exports = {
   setApiKey,
   coinList,
+  constituentExchangeList,
   exchangeList,
   newsFeedsAndCategories,
   newsList,
@@ -182,5 +209,7 @@ module.exports = {
   topExchangesFull,
   histoDay,
   histoHour,
-  histoMinute
+  histoMinute,
+  latestSocial,
+  histoSocial
 }

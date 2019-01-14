@@ -398,7 +398,7 @@ Get open, high, low, close, volumefrom and volumeto from the daily historical da
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
   - `allData` (Boolean) Returns all data.
-  - `toTs` (Boolean) Last unix timestamp to return data for.
+  - `toTs` (Number) Last unix timestamp to return data for.
   - `limit` (Number | `'none'`) Limit the number of days to lookup. Default is 30. If you set it to the string `'none'`, you will get all available data.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoDay()` gets historical data for the past several days. Use the `timestamp` option to set a historical start point.
@@ -431,7 +431,7 @@ Get open, high, low, close, volumefrom and volumeto from the hourly historical d
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
-  - `toTs` (Boolean) Last unix timestamp to return data for
+  - `toTs` (Number) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of hours to lookup. Default is 168.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoHour()` gets historical data for the past several hours. Use the `timestamp` option to set a historical start point.
@@ -464,7 +464,7 @@ Get open, high, low, close, volumefrom and volumeto from the minute-by-minute hi
 - `options` (Object)
   - `aggregate` (Number) Number of data points to aggregate.
   - `aggregatePredictableTimePeriods` (Boolean) Generate predictable time periods.
-  - `toTs` (Boolean) Last unix timestamp to return data for
+  - `toTs` (Number) Last unix timestamp to return data for
   - `limit` (Number) Limit the number of minutes to lookup. Default is 1440.
   - `tryConversion` (Boolean) By default, if the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion. Set `tryConversion` to `false` to disable using BTC for conversion.
   - `timestamp` (Date) By default, `histoMinute()` gets historical data for the past several minutes. Use the `timestamp` option to set a historical start point.
@@ -571,6 +571,154 @@ cc.exchangeList()
   //    ...
   //  ]
   // }
+})
+.catch(console.error)
+```
+
+### `constituentExchangeList()`
+
+Returns all the constituent exchanges in the request instrument.
+
+`constituentExchangeList([options])`
+
+- `options` (Object)
+  - `instrument` (String) The type of average instrument.
+- `Returns` (Object)
+
+```js
+const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
+
+// Usage:
+cc.constituentExchangeList()
+.then(exchanges => {
+  console.log(exchanges)
+  // {
+  //   "ABCC": {
+  //     "includeAll": false,
+  //     "onlyPairs": {
+  //       "CNN~BTC": true,
+  //       "TNS~BTC": true,
+  //       "TTU~USDT": true,
+  //       "XMX~BTC": true,
+  //       "GUSD~USDT": true
+  //     }
+  //   },
+  //   "ACX": {
+  //     "includeAll": true,
+  //     "onlyPairs": {}
+  //   },
+  //   ...
+  // }
+})
+.catch(console.error)
+```
+
+### `latestSocial()`
+
+Returns latest social stats data for the coin requested.
+
+`latestSocial([options])`
+
+- `options` (Object)
+  - `coinId` (Number) The id of the coin.
+- `Returns` (Object)
+
+```js
+const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
+
+// Usage:
+cc.latestSocial()
+.then(social => {
+  console.log(social)
+  // {
+  //   "General": {
+  //     "Points": 7431355,
+  //     "Name": "BTC",
+  //     "CoinName": "Bitcoin",
+  //     "Type": "Webpagecoinp"
+  //   },
+  //   "CryptoCompare": {
+  //     ...
+  //   },
+  //   "Twitter": {
+  //     ...
+  //   },
+  //   "Reddit": {
+  //     ...
+  //   },
+  //   "Facebook": {
+  //     ...
+  //   },
+  //   "CodeRepository": {
+  //     ...
+  //   }
+  // }
+})
+.catch(console.error)
+```
+
+### `histoSocial()`
+
+Returns social stats data for the coin requested.
+
+`histoSocial(timePeriod[, options])`
+
+- `timePeriod` (String) Time period - 'day' or 'hour'
+- `options` (Object)
+  - `coinId` (Number) The id of the coin.
+  - `aggregate` (Number) Time period to aggregate the data over.
+  - `aggregatePredictableTimePeriods` (Boolean) Only used if `aggregate` param included. If false, then it will create time slots based on when the call is made.
+  - `limit` (Number) Number of data points to return.
+  - `toTs` (Number) Last unix timestamp to return data for
+- `Returns` (Array of Objects)
+
+```js
+const cc = require('cryptocompare')
+cc.setApiKey('<your-api-key>')
+
+// Usage:
+cc.histoSocial('hour')
+.then(socialStats => {
+  console.log(socialStats)
+  // [
+  //   {
+  //     "time": 1548640800,
+  //     "comments": 229133,
+  //     "posts": 89997,
+  //     "followers": 64128,
+  //     "points": 6144455,
+  //     "overview_page_views": 22335644,
+  //     "analysis_page_views": 955496,
+  //     "markets_page_views": 1402190,
+  //     "charts_page_views": 7527086,
+  //     "trades_page_views": 673204,
+  //     "forum_page_views": 6585840,
+  //     "influence_page_views": 55903,
+  //     "total_page_views": 39535363,
+  //     "fb_likes": 40054,
+  //     "fb_talking_about": 92,
+  //     "twitter_followers": 844049,
+  //     "twitter_following": 165,
+  //     "twitter_lists": 6631,
+  //     "twitter_favourites": 1000,
+  //     "twitter_statuses": 20316,
+  //     "reddit_subscribers": 1013891,
+  //     "reddit_active_users": 4365,
+  //     "reddit_posts_per_hour": 3.77,
+  //     "reddit_posts_per_day": 90.46,
+  //     "reddit_comments_per_hour": 68.39,
+  //     "reddit_comments_per_day": 1641.34,
+  //     "code_repo_stars": 44353,
+  //     "code_repo_forks": 25367,
+  //     "code_repo_subscribers": 4179,
+  //     "code_repo_open_pull_issues": 330,
+  //     "code_repo_closed_pull_issues": 11847,
+  //     "code_repo_open_issues": 903,
+  //     "code_repo_closed_issues": 5187
+  //   }
+  // ]
 })
 .catch(console.error)
 ```
