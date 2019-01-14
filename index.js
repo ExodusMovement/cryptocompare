@@ -41,13 +41,13 @@ function exchangeList () {
 }
 
 function newsFeedsAndCategories () {
-  const url = `${baseUrl}data/news/feedsandcategories`
+  const url = `${baseUrl}news/feedsandcategories`
   return fetchJSON(url).then(result => result.Data)
 }
 
 function newsList (lang, options) {
   options = options || {}
-  let url = `${baseUrl}data/v2/news/?lang=${lang}`
+  let url = `${baseUrl}v2/news/?lang=${lang}`
   if (options.feeds) url += `&feeds=${options.feeds}`
   if (options.categories) url += `&categories=${options.categories}`
   if (options.excludeCategories) url += `&categories=${options.excludeCategories}`
