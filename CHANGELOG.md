@@ -1,3 +1,8 @@
+0.7.2 / 2019-01-25
+------------------
+
+- Fix bug with `newsList()` & `newsFeedsAndCategories()` ([#35](https://github.com/exodusmovement/cryptocompare/pull/35))
+
 0.7.1 / 2018-12-24
 ------------------
 
