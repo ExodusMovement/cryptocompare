@@ -618,6 +618,8 @@ cc.constituentExchangeList()
 
 Returns latest social stats data for the coin requested.
 
+_Note_: **Requires a valid API key.**
+
 `latestSocial([options])`
 
 - `options` (Object)
@@ -662,6 +664,8 @@ cc.latestSocial()
 ### `histoSocial()`
 
 Returns social stats data for the coin requested.
+
+_Note_: **Requires a valid API key.**
 
 `histoSocial(timePeriod[, options])`
 
