@@ -4,6 +4,14 @@ const test = require('tape')
 if (!global.fetch) global.fetch = require('node-fetch')
 const cc = require('../')
 const helpers = require('./helpers')
+const API_KEY = process.env.API_KEY
+
+if (API_KEY) {
+  test('setup', t => {
+    cc.setApiKey(process.env.API_KEY)
+    t.end()
+  })
+}
 
 test('coinList()', t => {
   t.plan(4)
@@ -257,3 +265,57 @@ test('error handling', t => {
     t.end()
   }).catch(t.end)
 })
+
+test('constituentExchangeList()', t => {
+  t.plan(2)
+  cc.constituentExchangeList().then(exchanges => {
+    t.strictEqual(typeof exchanges.Coinbase.includeAll, 'boolean', 'exchanges.Coinbase.includeAll is a boolean')
+    t.strictEqual(typeof exchanges.Coinbase.onlyPairs, 'object', 'exchanges.Coinbase.onlyPairs is an object')
+    t.end()
+  }).catch(t.end)
+})
+
+if (API_KEY) {
+  test('latestSocial()', t => {
+    t.plan(6)
+    cc.latestSocial().then(social => {
+      t.strictEqual(typeof social.General, 'object', 'social.General is an object')
+      t.strictEqual(typeof social.CryptoCompare, 'object', 'social.CryptoCompare is an object')
+      t.strictEqual(typeof social.Twitter, 'object', 'social.Twitter is an object')
+      t.strictEqual(typeof social.Reddit, 'object', 'social.Reddit is an object')
+      t.strictEqual(typeof social.Facebook, 'object', 'social.Facebook is an object')
+      t.strictEqual(typeof social.CodeRepository, 'object', 'social.CodeRepository is an object')
+      t.end()
+    }).catch(t.end)
+  })
+
+  test('latestSocial() coinId option works', t => {
+    t.plan(7)
+    cc.latestSocial({ coinId: 7605 }).then(social => {
+      t.strictEqual(typeof social.General, 'object', 'social.General is an object')
+      t.strictEqual(social.General.Name, 'ETH', 'social.General.Name is \'ETH\'')
+      t.strictEqual(typeof social.CryptoCompare, 'object', 'social.CryptoCompare is an object')
+      t.strictEqual(typeof social.Twitter, 'object', 'social.Twitter is an object')
+      t.strictEqual(typeof social.Reddit, 'object', 'social.Reddit is an object')
+      t.strictEqual(typeof social.Facebook, 'object', 'social.Facebook is an object')
+      t.strictEqual(typeof social.CodeRepository, 'object', 'social.CodeRepository is an object')
+      t.end()
+    }).catch(t.end)
+  })
+
+  test("histoSocial()'s timePeriod='day' works", t => {
+    t.plan(1)
+    cc.histoSocial('day').then(socialStats => {
+      t.strictEqual(typeof socialStats.length, 'number', 'socialStats.length returned is an array')
+      t.end()
+    }).catch(t.end)
+  })
+
+  test("histoSocial()'s timePeriod='hour' works", t => {
+    t.plan(1)
+    cc.histoSocial('hour').then(socialStats => {
+      t.strictEqual(typeof socialStats.length, 'number', 'socialStats.length returned is an array')
+      t.end()
+    }).catch(t.end)
+  })
+}
