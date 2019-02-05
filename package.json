@@ -9,7 +9,7 @@
   "devDependencies": {
     "node-fetch": "^1.5.3",
     "standard": "9.x",
-    "tap-spec": "^4.0.2",
+    "tap-spec": "^5.0.0",
     "tape": "^4.0.0"
   },
   "homepage": "https://github.com/exodusmovement/cryptocompare",
