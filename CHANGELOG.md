@@ -1,3 +1,11 @@
+1.0.0 / 2019-02-05
+------------------
+
+- added: `constituentExchangeList()` method ([#36](https://github.com/exodusmovement/cryptocompare/pull/36))
+- added: `latestSocial()` method ([#36](https://github.com/exodusmovement/cryptocompare/pull/36))
+- added: `histoSocial()` method ([#36](https://github.com/exodusmovement/cryptocompare/pull/36))
+- fixed: docs for `toTs` option ([#36](https://github.com/exodusmovement/cryptocompare/pull/36))
+
 0.7.2 / 2019-01-25
 ------------------
 
