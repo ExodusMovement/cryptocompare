@@ -345,6 +345,272 @@ cc.topPairs('BTC', 2)
 .catch(console.error)
 ```
 
+### `topVolumeFull()`
+
+Get top coins by total volume across all markets in the past 24 hours.
+
+`topVolumeFull(tsym[, options])`
+
+- `tsym` (String) To Symbol
+- `options` (Object)
+  - `limit` (Number) Limit the number of coins to return in the toplist. Default is 10.
+  - `page` (Number) Pagination for the request. Default is 0.
+
+```js
+cc.topVolumeFull('USD')
+.then(coins => {
+  console.log(coins)
+  // [
+  //  {
+  //    CoinInfo: {
+  //      Id: "752863",
+  //      Name: "HALAL",
+  //      FullName: "Halal",
+  //      Internal: "HALAL",
+  //      ImageUrl: "/media/27010609/halal_logo.png",
+  //      Url: "/coins/halal/overview",
+  //      Algorithm: "N/A",
+  //      ProofType: "N/A",
+  //      NetHashesPerSecond: 0,
+  //      BlockNumber: 0,
+  //      BlockTime: 0,
+  //      BlockReward: 0,
+  //      Type: 1,
+  //      DocumentType: "Webpagecoinp"
+  //    },
+  //    RAW: {
+  //      USD: {
+  //        TYPE: "5",
+  //        MARKET: "CCCAGG",
+  //        FROMSYMBOL: "HALAL",
+  //        TOSYMBOL: "USD",
+  //        FLAGS: "1",
+  //        PRICE: 33967500,
+  //        LASTUPDATE: 1549437800,
+  //        LASTVOLUME: 0,
+  //        LASTVOLUMETO: 0,
+  //        LASTTRADEID: 0,
+  //        VOLUMEDAY: 0,
+  //        VOLUMEDAYTO: 0,
+  //        VOLUME24HOUR: 0,
+  //        VOLUME24HOURTO: 0,
+  //        OPENDAY: 3396750,
+  //        HIGHDAY: 33967500,
+  //        LOWDAY: 3396750,
+  //        OPEN24HOUR: 33967500,
+  //        HIGH24HOUR: 33967500,
+  //        LOW24HOUR: 33967500,
+  //        LASTMARKET: "WavesDEX",
+  //        VOLUMEHOUR: 0,
+  //        VOLUMEHOURTO: 0,
+  //        OPENHOUR: 33967500,
+  //        HIGHHOUR: 33967500,
+  //        LOWHOUR: 33967500,
+  //        CHANGE24HOUR: 0,
+  //        CHANGEPCT24HOUR: 0,
+  //        CHANGEDAY: 30570750,
+  //        CHANGEPCTDAY: 900,
+  //        SUPPLY: 99000000,
+  //        MKTCAP: 3362782500000000,
+  //        TOTALVOLUME24H: 221.0801442,
+  //        TOTALVOLUME24HTO: 7509539798.113501,
+  //        IMAGEURL: "/media/27010609/halal_logo.png"
+  //      }
+  //    },
+  //    DISPLAY: {
+  //      USD:{
+  //        FROMSYMBOL: "HALAL",
+  //        TOSYMBOL: "$",
+  //        MARKET: "CryptoCompare Index",
+  //        PRICE: "$ 33,967,500.0",
+  //        LASTUPDATE: "Just now",
+  //        LASTVOLUME: "HALAL 0",
+  //        LASTVOLUMETO: "$ 0",
+  //        LASTTRADEID: 0,
+  //        VOLUMEDAY: "HALAL 0",
+  //        VOLUMEDAYTO: "$ 0",
+  //        VOLUME24HOUR: "HALAL 0",
+  //        VOLUME24HOURTO: "$ 0",
+  //        OPENDAY: "$ 3,396,750.0",
+  //        HIGHDAY: "$ 33,967,500.0",
+  //        LOWDAY: "$ 3,396,750.0",
+  //        OPEN24HOUR: "$ 33,967,500.0",
+  //        HIGH24HOUR: "$ 33,967,500.0",
+  //        LOW24HOUR: "$ 33,967,500.0",
+  //        LASTMARKET: "WavesDEX",
+  //        VOLUMEHOUR: "HALAL 0",
+  //        VOLUMEHOURTO: "$ 0",
+  //        OPENHOUR: "$ 33,967,500.0",
+  //        HIGHHOUR: "$ 33,967,500.0",
+  //        LOWHOUR: "$ 33,967,500.0",
+  //        CHANGE24HOUR: "$ 0.0",
+  //        CHANGEPCT24HOUR: "0.00",
+  //        CHANGEDAY: "$ 30,570,750",
+  //        CHANGEPCTDAY: "900.00",
+  //        SUPPLY: "HALAL 99,000,000.0",
+  //        MKTCAP: "$ 3,362,782.50 B",
+  //        TOTALVOLUME24H: "HALAL 221.08",
+  //        TOTALVOLUME24HTO: "$ 7,509.54 M",
+  //        IMAGEURL: "/media/27010609/halal_logo.png"
+  //      }
+  //    }
+  //  },
+  //  ... ]
+})
+.catch(console.error)
+```
+
+### `topMarketCap()`
+
+Get top coins by market cap.
+
+`topMarketCap(tsym[, options])`
+
+- `tsym` (String) To Symbol
+- `options` (Object)
+  - `limit` (Number) Limit the number of coins to return in the toplist. Default is 10.
+  - `page` (Number) Pagination for the request. Default is 0.
+
+```js
+cc.topMarketCap('USD')
+.then(coins => {
+  console.log(coins)
+  // [
+  //  {
+  //    CoinInfo: {
+  //      Id: "752863",
+  //      Name: "HALAL",
+  //      FullName: "Halal",
+  //      Internal: "HALAL",
+  //      ImageUrl: "/media/27010609/halal_logo.png",
+  //      Url: "/coins/halal/overview",
+  //      Algorithm: "N/A",
+  //      ProofType: "N/A",
+  //      NetHashesPerSecond: 0,
+  //      BlockNumber: 0,
+  //      BlockTime: 0,
+  //      BlockReward: 0,
+  //      Type: 1,
+  //      DocumentType: "Webpagecoinp"
+  //    },
+  //    RAW: {
+  //      USD: {
+  //        TYPE: "5",
+  //        MARKET: "CCCAGG",
+  //        FROMSYMBOL: "HALAL",
+  //        TOSYMBOL: "USD",
+  //        FLAGS: "1",
+  //        PRICE: 34002300
+  //        LASTUPDATE: 1549438716
+  //        LASTVOLUME: 0
+  //        LASTVOLUMETO: 0
+  //        LASTTRADEID: 0
+  //        VOLUMEDAY: 0
+  //        VOLUMEDAYTO: 0
+  //        VOLUME24HOUR:	0
+  //        VOLUME24HOURTO: 0
+  //        OPENDAY: 3400230
+  //        HIGHDAY: 34002300
+  //        LOWDAY: 3400230
+  //        OPEN24HOUR: 34002300
+  //        HIGH24HOUR: 34002300
+  //        LOW24HOUR: 34002300
+  //        LASTMARKET: "WavesDEX"
+  //        VOLUMEHOUR: 0
+  //        VOLUMEHOURTO: 0
+  //        OPENHOUR: 34002300
+  //        HIGHHOUR: 34002300
+  //        LOWHOUR: 34002300
+  //        CHANGE24HOUR: 0
+  //        CHANGEPCT24HOUR: 0
+  //        CHANGEDAY: 30602070
+  //        CHANGEPCTDAY: 900
+  //        SUPPLY: 99000000
+  //        MKTCAP: 3366227700000000
+  //        TOTALVOLUME24H: 221.0801442
+  //        TOTALVOLUME24HTO: 7517233387.13166
+  //        IMAGEURL: "/media/27010609/halal_logo.png"
+  //      }
+  //    },
+  //    DISPLAY: {
+  //      USD:{
+  //        FROMSYMBOL: "HALAL",
+  //        TOSYMBOL: "$",
+  //        MARKET: "CryptoCompare Index",
+  //        PRICE: "$ 34,002,300.0"
+  //        LASTUPDATE: "Just now"
+  //        LASTVOLUME: "HALAL 0"
+  //        LASTVOLUMETO: "$ 0"
+  //        LASTTRADEID: 0
+  //        VOLUMEDAY: "HALAL 0"
+  //        VOLUMEDAYTO: "$ 0"
+  //        VOLUME24HOUR: "HALAL 0"
+  //        VOLUME24HOURTO: "$ 0"
+  //        OPENDAY: "$ 3,400,230.0"
+  //        HIGHDAY: "$ 34,002,300.0"
+  //        LOWDAY: "$ 3,400,230.0"
+  //        OPEN24HOUR: "$ 34,002,300.0"
+  //        HIGH24HOUR: "$ 34,002,300.0"
+  //        LOW24HOUR: "$ 34,002,300.0"
+  //        LASTMARKET: "WavesDEX"
+  //        VOLUMEHOUR: "HALAL 0"
+  //        VOLUMEHOURTO: "$ 0"
+  //        OPENHOUR: "$ 34,002,300.0"
+  //        HIGHHOUR: "$ 34,002,300.0"
+  //        LOWHOUR: "$ 34,002,300.0"
+  //        CHANGE24HOUR: "$ 0.0"
+  //        CHANGEPCT24HOUR: "0.00"
+  //        CHANGEDAY: "$ 30,602,070"
+  //        CHANGEPCTDAY: "900.00"
+  //        SUPPLY: "HALAL 99,000,000.0"
+  //        MKTCAP: "$ 3,366,227.70 B"
+  //        TOTALVOLUME24H: "HALAL 221.08"
+  //        TOTALVOLUME24HTO: "$ 7,517.23 M"
+  //        IMAGEURL: "/media/27010609/halal_logo.png"
+  //      }
+  //    }
+  //  },
+  //  ... ]
+})
+.catch(console.error)
+```
+
+### `topPairVolume()`
+
+Get top coins by volume for the to currency. Total number of coins returned is the sum of the limit and the number of coins available.
+
+`topPairVolume(tsym[, options])`
+
+- `tsym` (String) To Symbol
+- `options` (Object)
+  - `limit` (Number) Limit the number of data points to return. Default is 20.
+
+```js
+cc.topPairVolume('USD')
+.then(coins => {
+  console.log(coins)
+  // [
+  //  {
+  //    SYMBOL:	"XBTUSD",
+  //    SUPPLY:	0,
+  //    FULLNAME:	"XBTUSD",
+  //    NAME:	"XBTUSD",
+  //    ID:	-1,
+  //    VOLUME24HOURTO:	499692678.79042876
+  //  },
+  //  {
+  //    SYMBOL:	"BTC",
+  //    SUPPLY:	17522012,
+  //    FULLNAME:	"Bitcoin (BTC)",
+  //    NAME:	"Bitcoin",
+  //    ID:	"1182",
+  //    VOLUME24HOURTO:	116168543.40879993
+  //  },
+  //  ... ]
+})
+.catch(console.error)
+```
+
 ### `topExchanges()`
 
 Get top exchanges by volume for a currency pair.

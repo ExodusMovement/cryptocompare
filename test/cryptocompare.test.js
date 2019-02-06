@@ -231,6 +231,91 @@ test("topPairs()'s limit option works", t => {
   }).catch(t.end)
 })
 
+test('topVolumeFull()', t => {
+  t.plan(3 * 10 + 1)
+  cc.topVolumeFull('USD').then(coins => {
+    t.equal(coins.length, 10, 'returns the top 10 coins by default')
+    coins.forEach(coin => {
+      t.strictEqual(typeof coin.CoinInfo, 'object', 'coin.CoinInfo is an object')
+      t.strictEqual(typeof coin.RAW, 'object', 'coin.RAW is an object')
+      t.strictEqual(typeof coin.DISPLAY, 'object', 'coin.DISPLAY is an object')
+    })
+    t.end()
+  }).catch(t.end)
+})
+
+test("topVolumeFull()'s limit option works", t => {
+  t.plan(1)
+  cc.topVolumeFull('USD', { limit: 10 }).then(coins => {
+    t.equal(coins.length, 10, 'limit works')
+    t.end()
+  }).catch(t.end)
+})
+
+test("topVolumeFull()'s page option works", t => {
+  t.plan(3)
+  Promise.all([
+    cc.topVolumeFull('USD', { page: 0 }),
+    cc.topVolumeFull('USD', { page: 1 })
+  ]).then(data => {
+    t.strictEqual(typeof data[0].length, 'number', 'data[0].length returned is an array')
+    t.strictEqual(typeof data[1].length, 'number', 'data[1].length returned is an array')
+    t.notDeepEqual(data[0][0], data[1][0])
+    t.end()
+  }).catch(t.end)
+})
+
+test('topMarketCap()', t => {
+  t.plan(3 * 10 + 1)
+  cc.topMarketCap('USD').then(coins => {
+    t.equal(coins.length, 10, 'returns the top 10 coins by default')
+    coins.forEach(coin => {
+      t.strictEqual(typeof coin.CoinInfo, 'object', 'coin.CoinInfo is an object')
+      t.strictEqual(typeof coin.RAW, 'object', 'coin.RAW is an object')
+      t.strictEqual(typeof coin.DISPLAY, 'object', 'coin.DISPLAY is an object')
+    })
+    t.end()
+  }).catch(t.end)
+})
+
+test("topMarketCap()'s limit option works", t => {
+  t.plan(1)
+  cc.topMarketCap('USD', { limit: 10 }).then(coins => {
+    t.equal(coins.length, 10, 'limit works')
+    t.end()
+  }).catch(t.end)
+})
+
+test("topMarketCap()'s page option works", t => {
+  t.plan(3)
+  Promise.all([
+    cc.topMarketCap('USD', { page: 0 }),
+    cc.topMarketCap('USD', { page: 1 })
+  ]).then(data => {
+    t.strictEqual(typeof data[0].length, 'number', 'data[0].length returned is an array')
+    t.strictEqual(typeof data[1].length, 'number', 'data[1].length returned is an array')
+    t.notDeepEqual(data[0][0], data[1][0])
+    t.end()
+  }).catch(t.end)
+})
+
+test('topPairVolume()', t => {
+  t.plan(1)
+  cc.topPairVolume('BTC').then(coins => {
+    t.strictEqual(typeof coins.length, 'number', 'coins.length returned is an array')
+    t.end()
+  }).catch(t.end)
+})
+
+test("topPairVolume()'s limit option works", t => {
+  t.plan(1)
+  cc.topPairVolume('BTC', { limit: 3 }).then(coins => {
+    //  Number of Returned Coins = Limit + Total Number of Coins Available
+    t.equal(coins.length, 4, 'limit works')
+    t.end()
+  }).catch(t.end)
+})
+
 test('topExchanges()', t => {
   t.plan(6 * 5 + 1)
   cc.topExchanges('BTC', 'USD').then(exchanges => {
