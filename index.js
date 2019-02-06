@@ -124,6 +124,29 @@ function topExchangesFull (fsym, tsym, limit) {
   return fetchJSON(url).then(result => result.Data)
 }
 
+function topVolumeFull (tsym, options) {
+  options = options || {}
+  let url = `${baseUrl}top/totalvolfull?tsym=${tsym}`
+  if (options.limit >= 10 && options.limit <= 100) url += `&limit=${options.limit}`
+  if (options.page) url += `&page=${options.page}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
+function topMarketCap (tsym, options) {
+  options = options || {}
+  let url = `${baseUrl}top/mktcapfull?tsym=${tsym}`
+  if (options.limit >= 10 && options.limit <= 100) url += `&limit=${options.limit}`
+  if (options.page) url += `&page=${options.page}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
+function topPairVolume (tsym, options) {
+  options = options || {}
+  let url = `${baseUrl}top/volumes?tsym=${tsym}`
+  if (options.limit >= 1 && options.limit <= 1000) url += `&limit=${options.limit}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 function histoDay (fsym, tsym, options) {
   options = options || {}
   if (options.timestamp) options.timestamp = dateToTimestamp(options.timestamp)
@@ -205,6 +228,9 @@ module.exports = {
   priceHistorical,
   generateAvg,
   topPairs,
+  topVolumeFull,
+  topMarketCap,
+  topPairVolume,
   topExchanges,
   topExchangesFull,
   histoDay,
