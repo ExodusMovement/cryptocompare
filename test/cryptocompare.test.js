@@ -4,11 +4,11 @@ const test = require('tape')
 if (!global.fetch) global.fetch = require('node-fetch')
 const cc = require('../')
 const helpers = require('./helpers')
-const API_KEY = process.env.API_KEY
+const CC_API_KEY = process.env.CC_API_KEY
 
-if (API_KEY) {
+if (CC_API_KEY) {
   test('setup', t => {
-    cc.setApiKey(process.env.API_KEY)
+    cc.setApiKey(process.env.CC_API_KEY)
     t.end()
   })
 }
@@ -275,7 +275,7 @@ test('constituentExchangeList()', t => {
   }).catch(t.end)
 })
 
-if (API_KEY) {
+if (CC_API_KEY) {
   test('latestSocial()', t => {
     t.plan(6)
     cc.latestSocial().then(social => {
@@ -316,6 +316,15 @@ if (API_KEY) {
     cc.histoSocial('hour').then(socialStats => {
       t.strictEqual(typeof socialStats.length, 'number', 'socialStats.length returned is an array')
       t.end()
+    }).catch(t.end)
+  })
+
+  test('rateLimit works', t => {
+    t.plan(3)
+    cc.rateLimit().then(stats => {
+      t.ok(stats.Data, 'stats.Data exists')
+      t.ok(stats.Data.calls_made, 'calls_made exists')
+      t.ok(stats.Data.calls_left, 'calls_left exists')
     }).catch(t.end)
   })
 }
